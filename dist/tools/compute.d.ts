@@ -12,6 +12,7 @@ export interface ComputeShapeInfo {
     description: string;
     ocpuPrice: number;
     memoryPricePerGB: number;
+    instancePricePerHour?: number;
     totalPriceExample: string;
     ocpuRange: string;
     memoryRange: string;

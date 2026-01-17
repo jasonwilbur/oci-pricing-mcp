@@ -17,6 +17,7 @@ export interface ComputeShapeInfo {
   description: string;
   ocpuPrice: number;
   memoryPricePerGB: number;
+  instancePricePerHour?: number; // For fixed-shape instances (bare metal, GPU)
   totalPriceExample: string;
   ocpuRange: string;
   memoryRange: string;
@@ -60,11 +61,25 @@ export function listComputeShapes(params: ListComputeShapesParams = {}): {
 
   // Transform to user-friendly format
   const shapeInfos: ComputeShapeInfo[] = shapes.map((s) => {
-    // Calculate example price (4 OCPU, 32 GB RAM for 730 hours)
-    const exampleOcpus = Math.min(4, s.maxOCPU || 4);
-    const exampleMemory = Math.min(32, s.maxMemoryGB || 32);
-    const exampleMonthly =
-      (s.ocpuPrice * exampleOcpus + s.memoryPricePerGB * exampleMemory) * 730;
+    // Check if this is a fixed-instance shape (bare metal, GPU) vs flexible
+    const isFixedInstance = s.unit === 'instance per hour' || (s.ocpuPrice === 0 && s.pricePerUnit > 0);
+
+    let totalPriceExample: string;
+    let instancePricePerHour: number | undefined;
+
+    if (isFixedInstance) {
+      // Fixed instance pricing (bare metal, GPU)
+      instancePricePerHour = s.pricePerUnit;
+      const monthlyPrice = s.pricePerUnit * 730;
+      totalPriceExample = `$${s.pricePerUnit.toFixed(2)}/hr = ~$${monthlyPrice.toFixed(2)}/month (fixed instance)`;
+    } else {
+      // Flexible pricing (OCPU + memory)
+      const exampleOcpus = Math.min(4, s.maxOCPU || 4);
+      const exampleMemory = Math.min(32, s.maxMemoryGB || 32);
+      const exampleMonthly =
+        (s.ocpuPrice * exampleOcpus + s.memoryPricePerGB * exampleMemory) * 730;
+      totalPriceExample = `~$${exampleMonthly.toFixed(2)}/month for ${exampleOcpus} OCPU, ${exampleMemory} GB RAM`;
+    }
 
     return {
       shapeFamily: s.shapeFamily || s.type,
@@ -72,7 +87,8 @@ export function listComputeShapes(params: ListComputeShapesParams = {}): {
       description: s.description,
       ocpuPrice: s.ocpuPrice,
       memoryPricePerGB: s.memoryPricePerGB,
-      totalPriceExample: `~$${exampleMonthly.toFixed(2)}/month for ${exampleOcpus} OCPU, ${exampleMemory} GB RAM`,
+      instancePricePerHour,
+      totalPriceExample,
       ocpuRange: s.minOCPU && s.maxOCPU ? `${s.minOCPU}-${s.maxOCPU} OCPUs` : 'N/A',
       memoryRange:
         s.minMemoryGB && s.maxMemoryGB ? `${s.minMemoryGB}-${s.maxMemoryGB} GB` : 'N/A',
