@@ -14,7 +14,7 @@ import { listStorageOptions, calculateStorageCost, compareStorageTiers } from '.
 import { listDatabaseOptions, calculateDatabaseCost, compareDatabaseOptions } from './tools/database.js';
 import { listNetworkingOptions, calculateNetworkingCost, compareDataEgress } from './tools/networking.js';
 import { listKubernetesOptions, calculateKubernetesCost, compareKubernetesProviders } from './tools/kubernetes.js';
-import { getLastUpdated, getFreeTier } from './data/fetcher.js';
+import { getLastUpdated, getFreeTier, fetchRealTimePricing, getRealTimeCategories } from './data/fetcher.js';
 // Create server instance
 const server = new Server({
     name: 'oci-pricing-mcp',
@@ -395,6 +395,36 @@ const TOOLS = [
             properties: {},
         },
     },
+    // Real-time API tools
+    {
+        name: 'fetch_realtime_pricing',
+        description: 'Fetch real-time pricing from Oracle\'s public API. Returns 600+ products with current prices. No authentication required.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                currency: {
+                    type: 'string',
+                    description: 'Currency code (default: USD). Supports: USD, EUR, GBP, JPY, AUD, CAD, etc.',
+                },
+                category: {
+                    type: 'string',
+                    description: 'Filter by service category (e.g., "Compute", "Storage", "Database")',
+                },
+                search: {
+                    type: 'string',
+                    description: 'Search term to filter products by name or SKU',
+                },
+            },
+        },
+    },
+    {
+        name: 'list_realtime_categories',
+        description: 'List all service categories available from Oracle\'s real-time pricing API.',
+        inputSchema: {
+            type: 'object',
+            properties: {},
+        },
+    },
 ];
 // Handle list tools request
 server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -485,8 +515,24 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                 result = {
                     lastUpdated: getLastUpdated(),
                     source: 'https://www.oracle.com/cloud/price-list/',
+                    realtimeApi: 'https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/',
                     note: 'OCI maintains consistent pricing across all commercial regions globally.',
                     version: '1.0.0',
+                    dataMode: 'bundled (use fetch_realtime_pricing for live API data)',
+                };
+                break;
+            // Real-time API tools
+            case 'fetch_realtime_pricing':
+                result = await fetchRealTimePricing({
+                    currency: typedArgs.currency,
+                    category: typedArgs.category,
+                    search: typedArgs.search,
+                });
+                break;
+            case 'list_realtime_categories':
+                result = {
+                    categories: await getRealTimeCategories(),
+                    note: 'Categories from Oracle\'s real-time pricing API',
                 };
                 break;
             default:

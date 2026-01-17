@@ -1,8 +1,21 @@
 /**
  * OCI Pricing Data Fetcher
- * Loads pricing data from bundled JSON with optional future API support
+ * Loads pricing data from bundled JSON or real-time Oracle API
  */
 import type { OCIPricingData } from '../types.js';
+export interface RealTimePriceItem {
+    partNumber: string;
+    displayName: string;
+    metricName: string;
+    serviceCategory: string;
+    unitPrice: number;
+    currency: string;
+}
+export interface RealTimePricingResponse {
+    lastUpdated: string;
+    totalProducts: number;
+    items: RealTimePriceItem[];
+}
 /**
  * Get OCI pricing data
  * Uses cache if available, otherwise loads from bundled data
@@ -52,4 +65,17 @@ export declare function getLastUpdated(): string;
  * Force refresh of cached data
  */
 export declare function refreshCache(): void;
+/**
+ * Fetch real-time pricing from Oracle's public API
+ * This provides 600+ products with current prices
+ */
+export declare function fetchRealTimePricing(options?: {
+    currency?: string;
+    category?: string;
+    search?: string;
+}): Promise<RealTimePricingResponse>;
+/**
+ * Get available service categories from real-time API
+ */
+export declare function getRealTimeCategories(): Promise<string[]>;
 //# sourceMappingURL=fetcher.d.ts.map

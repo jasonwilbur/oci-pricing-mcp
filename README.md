@@ -98,6 +98,13 @@ claude mcp add oci-pricing -- node /path/to/oci-pricing-mcp/dist/index.js
 | `get_free_tier` | OCI Always Free tier details |
 | `get_pricing_info` | Pricing data metadata |
 
+### Real-Time Pricing Tools
+
+| Tool | Description |
+|------|-------------|
+| `fetch_realtime_pricing` | Fetch live pricing from Oracle's API (600+ products) |
+| `list_realtime_categories` | List all 109 service categories from the API |
+
 ## Usage Examples
 
 ### Ask Claude about OCI pricing
@@ -153,11 +160,57 @@ Available presets:
 
 1 OCPU = 2 vCPUs for x86 architectures. OCPUs represent physical cores, so OCI's $0.03/OCPU/hr is equivalent to $0.015/vCPU/hr.
 
-## Data Source
+## Data Sources
 
-Pricing data is sourced from [Oracle Cloud Price List](https://www.oracle.com/cloud/price-list/) and bundled with the server. The data is updated periodically with each release.
+This MCP server supports two data modes:
 
-Current data: January 2026
+### Bundled Data (Default)
+
+Pricing data is sourced from [Oracle Cloud Price List](https://www.oracle.com/cloud/price-list/) and bundled with the server. This provides fast, offline access to 101 curated SKUs across 12 service categories.
+
+- **Last updated**: January 2026
+- **SKUs**: 101 products
+- **Categories**: 12 (compute, storage, database, networking, kubernetes, serverless, containers, observability, security, data analytics, AI/ML, edge)
+
+### Real-Time API
+
+For the most current pricing, use the `fetch_realtime_pricing` tool which queries Oracle's public pricing API directly:
+
+```
+https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/
+```
+
+- **Products**: 600+ SKUs
+- **Categories**: 109 service categories
+- **Authentication**: None required (public API)
+- **Multi-currency**: USD, EUR, GBP, JPY, AUD, CAD, and more
+
+## FAQ
+
+### Does OCI have a pricing API?
+
+Yes! Oracle provides a public pricing API at `https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/` that returns all OCI product pricing in JSON format. No authentication is required. This MCP server uses this API for the `fetch_realtime_pricing` tool.
+
+### Where does the pricing data come from?
+
+- **Bundled data**: Curated from [Oracle Cloud Price List](https://www.oracle.com/cloud/price-list/) and included in the npm package
+- **Real-time data**: Fetched directly from Oracle's public pricing API
+
+### How often is the bundled data updated?
+
+The bundled pricing data is updated with each npm release. Use `fetch_realtime_pricing` for the most current prices between releases.
+
+### Why are prices the same across all regions?
+
+Unlike AWS, Azure, and GCP, Oracle Cloud Infrastructure maintains **consistent global pricing** across all commercial regions. This simplifies cost planning and means you can deploy anywhere without price variations.
+
+### What's the difference between OCPU and vCPU?
+
+1 OCPU = 2 vCPUs for x86 architectures. OCPUs represent physical cores with hyper-threading, so OCI's $0.03/OCPU/hr is equivalent to $0.015/vCPU/hr when comparing to AWS/Azure/GCP.
+
+### Can I query my actual OCI spend?
+
+This MCP server provides pricing data, not account spend. For actual usage and spend tracking, you would need to use the OCI Cost Management APIs with proper authentication. This could be added as a future enhancement.
 
 ## Development
 
