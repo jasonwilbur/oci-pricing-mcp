@@ -60,17 +60,10 @@ making it significantly more cost-effective for data-heavy workloads.
 
 ## Installation
 
-### Via npx (Recommended)
+### Quick Install (Recommended)
 
 ```bash
-claude mcp add oci-pricing -- npx -y oci-pricing-mcp
-```
-
-### Global Install
-
-```bash
-npm install -g oci-pricing-mcp
-claude mcp add oci-pricing -- oci-pricing-mcp
+claude mcp add oci-pricing -- npx github:jasonwilbur/oci-pricing-mcp
 ```
 
 ### From Source
