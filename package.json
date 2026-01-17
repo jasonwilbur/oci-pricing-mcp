@@ -1,6 +1,6 @@
 {
   "name": "oci-pricing-mcp",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "description": "OCI Pricing MCP Server - Model Context Protocol server for Oracle Cloud Infrastructure pricing information",
   "type": "module",
   "main": "dist/index.js",
