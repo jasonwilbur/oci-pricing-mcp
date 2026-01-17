@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-16",
+  "lastUpdated": "2026-01-17",
   "source": "https://www.oracle.com/cloud/price-list/",
   "notes": "OCI pricing is consistent across all commercial regions. Government and sovereign regions may vary.",
   "compute": [
@@ -646,6 +646,492 @@
       "notes": "Per GB of pod memory per hour."
     }
   ],
+  "serverless": [
+    {
+      "service": "serverless",
+      "type": "functions-invocations",
+      "description": "OCI Functions - Per invocation charge",
+      "unit": "invocation",
+      "pricePerUnit": 0.0000002,
+      "currency": "USD",
+      "freePerMonth": 2000000,
+      "notes": "First 2 million invocations/month free. $0.20 per million after."
+    },
+    {
+      "service": "serverless",
+      "type": "functions-execution",
+      "description": "OCI Functions - Execution time (GB-seconds)",
+      "unit": "GB-second",
+      "pricePerUnit": 0.00001417,
+      "currency": "USD",
+      "freePerMonth": 400000,
+      "notes": "First 400K GB-seconds/month free. Memory × execution time."
+    },
+    {
+      "service": "serverless",
+      "type": "api-gateway",
+      "description": "API Gateway - Per API call charge",
+      "unit": "million calls",
+      "pricePerUnit": 3.00,
+      "currency": "USD",
+      "freePerMonth": 2000000,
+      "notes": "First 2M calls/month free. $1.50/million at 1B+ calls."
+    },
+    {
+      "service": "serverless",
+      "type": "events",
+      "description": "OCI Events - Event routing service",
+      "unit": "million events",
+      "pricePerUnit": 1.00,
+      "currency": "USD",
+      "freePerMonth": 1000000,
+      "notes": "First 1M events/month free. Routes events to Functions, Streaming, Notifications."
+    },
+    {
+      "service": "serverless",
+      "type": "queue",
+      "description": "OCI Queue - Message queue service",
+      "unit": "million requests",
+      "pricePerUnit": 0.50,
+      "currency": "USD",
+      "freePerMonth": 1000000,
+      "notes": "First 1M requests/month free. Fully managed message queuing."
+    },
+    {
+      "service": "serverless",
+      "type": "streaming-storage",
+      "description": "OCI Streaming - Data storage",
+      "unit": "GB per hour",
+      "pricePerUnit": 0.025,
+      "currency": "USD",
+      "notes": "Kafka-compatible streaming. Per GB of data stored."
+    },
+    {
+      "service": "serverless",
+      "type": "streaming-requests",
+      "description": "OCI Streaming - PUT/GET requests",
+      "unit": "GB transferred",
+      "pricePerUnit": 0.025,
+      "currency": "USD",
+      "notes": "Per GB of data transferred (PUT or GET)."
+    },
+    {
+      "service": "serverless",
+      "type": "streaming-partitions",
+      "description": "OCI Streaming - Partition hours",
+      "unit": "partition per hour",
+      "pricePerUnit": 0.0278,
+      "currency": "USD",
+      "notes": "Per partition-hour. Each partition supports 1 MB/s write, 2 MB/s read."
+    }
+  ],
+  "containers": [
+    {
+      "service": "containers",
+      "type": "container-instances-a1-ocpu",
+      "description": "Container Instances - Ampere A1 OCPU",
+      "unit": "OCPU per hour",
+      "pricePerUnit": 0.01,
+      "currency": "USD",
+      "freePerMonth": 3000,
+      "notes": "Same as VM.Standard.A1.Flex pricing. First 3000 OCPU-hours/month free."
+    },
+    {
+      "service": "containers",
+      "type": "container-instances-a1-memory",
+      "description": "Container Instances - Ampere A1 Memory",
+      "unit": "GB per hour",
+      "pricePerUnit": 0.0006,
+      "currency": "USD",
+      "freePerMonth": 18000,
+      "notes": "Same as VM.Standard.A1.Flex pricing. First 18000 GB-hours/month free."
+    },
+    {
+      "service": "containers",
+      "type": "container-instances-e4-ocpu",
+      "description": "Container Instances - E4 Flex OCPU",
+      "unit": "OCPU per hour",
+      "pricePerUnit": 0.025,
+      "currency": "USD",
+      "notes": "Same as VM.Standard.E4.Flex pricing."
+    },
+    {
+      "service": "containers",
+      "type": "container-instances-e4-memory",
+      "description": "Container Instances - E4 Flex Memory",
+      "unit": "GB per hour",
+      "pricePerUnit": 0.0015,
+      "currency": "USD",
+      "notes": "Same as VM.Standard.E4.Flex pricing."
+    },
+    {
+      "service": "containers",
+      "type": "container-registry",
+      "description": "Container Registry (OCIR) - Image storage",
+      "unit": "GB per month",
+      "pricePerUnit": 0.0255,
+      "currency": "USD",
+      "freeGB": 5,
+      "notes": "First 5 GB free. Same as Object Storage pricing. 500 repos max."
+    }
+  ],
+  "observability": [
+    {
+      "service": "observability",
+      "type": "logging",
+      "description": "OCI Logging - Log ingestion",
+      "unit": "GB ingested",
+      "pricePerUnit": 0.05,
+      "currency": "USD",
+      "freeGB": 10,
+      "notes": "First 10 GB/month free. Centralized log management."
+    },
+    {
+      "service": "observability",
+      "type": "logging-analytics-active",
+      "description": "Logging Analytics - Active storage",
+      "unit": "unit per month",
+      "pricePerUnit": 0.75,
+      "currency": "USD",
+      "notes": "Per 300 GB unit. Tiered pricing: $0.65/unit at 35+ units."
+    },
+    {
+      "service": "observability",
+      "type": "logging-analytics-archive",
+      "description": "Logging Analytics - Archive storage",
+      "unit": "unit per hour",
+      "pricePerUnit": 0.0054,
+      "currency": "USD",
+      "notes": "Per 300 GB unit. Long-term log retention."
+    },
+    {
+      "service": "observability",
+      "type": "monitoring-metrics",
+      "description": "OCI Monitoring - Custom metrics ingestion",
+      "unit": "million datapoints",
+      "pricePerUnit": 0.50,
+      "currency": "USD",
+      "freePerMonth": 500000000,
+      "notes": "First 500M datapoints/month free. Standard metrics always free."
+    },
+    {
+      "service": "observability",
+      "type": "notifications",
+      "description": "OCI Notifications - Message delivery",
+      "unit": "million messages",
+      "pricePerUnit": 1.00,
+      "currency": "USD",
+      "freePerMonth": 1000000,
+      "notes": "First 1M messages/month free. Email, SMS, Slack, PagerDuty."
+    },
+    {
+      "service": "observability",
+      "type": "apm-tracing",
+      "description": "Application Performance Monitoring - Tracing",
+      "unit": "thousand events per hour",
+      "pricePerUnit": 0.35,
+      "currency": "USD",
+      "freePerHour": 1000,
+      "notes": "First 1000 trace events/hour free. Distributed tracing."
+    },
+    {
+      "service": "observability",
+      "type": "apm-synthetic",
+      "description": "Application Performance Monitoring - Synthetic monitoring",
+      "unit": "monitor run",
+      "pricePerUnit": 0.001,
+      "currency": "USD",
+      "freePerHour": 10,
+      "notes": "First 10 runs/hour free. Uptime and availability checks."
+    },
+    {
+      "service": "observability",
+      "type": "health-checks",
+      "description": "Health Checks - Endpoint monitoring",
+      "unit": "check per month",
+      "pricePerUnit": 0,
+      "currency": "USD",
+      "notes": "FREE - Up to 10 health checks per tenancy."
+    }
+  ],
+  "security": [
+    {
+      "service": "security",
+      "type": "bastion",
+      "description": "OCI Bastion - Secure access service",
+      "unit": "session",
+      "pricePerUnit": 0,
+      "currency": "USD",
+      "notes": "FREE - Secure SSH/RDP access without public IPs. Max 3hr sessions."
+    },
+    {
+      "service": "security",
+      "type": "vault-virtual-private",
+      "description": "Vault - Virtual Private Vault",
+      "unit": "vault per hour",
+      "pricePerUnit": 2.53,
+      "currency": "USD",
+      "notes": "Dedicated HSM partition. Includes 1000 key versions."
+    },
+    {
+      "service": "security",
+      "type": "vault-key-version",
+      "description": "Vault - Key versions (without private vault)",
+      "unit": "key version per month",
+      "pricePerUnit": 0.53,
+      "currency": "USD",
+      "notes": "Per active key version. Software-protected keys are free."
+    },
+    {
+      "service": "security",
+      "type": "vault-software-keys",
+      "description": "Vault - Software-protected keys",
+      "unit": "key",
+      "pricePerUnit": 0,
+      "currency": "USD",
+      "notes": "FREE - Software-protected encryption keys."
+    },
+    {
+      "service": "security",
+      "type": "waf",
+      "description": "Web Application Firewall - Request processing",
+      "unit": "million requests",
+      "pricePerUnit": 0.60,
+      "currency": "USD",
+      "freePerMonth": 10000000,
+      "notes": "First 10M requests/month free. Bot management additional."
+    },
+    {
+      "service": "security",
+      "type": "cloud-guard",
+      "description": "Cloud Guard - Security posture management",
+      "unit": "service",
+      "pricePerUnit": 0,
+      "currency": "USD",
+      "notes": "FREE - Threat detection and security monitoring."
+    },
+    {
+      "service": "security",
+      "type": "vulnerability-scanning",
+      "description": "Vulnerability Scanning - Host and container scans",
+      "unit": "scan",
+      "pricePerUnit": 0,
+      "currency": "USD",
+      "notes": "FREE - Scan compute instances and container images."
+    }
+  ],
+  "dataAnalytics": [
+    {
+      "service": "data-analytics",
+      "type": "data-flow",
+      "description": "Data Flow - Managed Apache Spark",
+      "unit": "OCPU per hour",
+      "pricePerUnit": 0.025,
+      "currency": "USD",
+      "freePerMonth": 20,
+      "notes": "First 20 OCPU-hours/month free. Serverless Spark execution."
+    },
+    {
+      "service": "data-analytics",
+      "type": "data-integration",
+      "description": "Data Integration - ETL service",
+      "unit": "OCPU per hour",
+      "pricePerUnit": 0.25,
+      "currency": "USD",
+      "notes": "Managed data pipelines. Workspace is free, pay for execution."
+    },
+    {
+      "service": "data-analytics",
+      "type": "data-catalog",
+      "description": "Data Catalog - Metadata management",
+      "unit": "asset per month",
+      "pricePerUnit": 0,
+      "currency": "USD",
+      "notes": "FREE - Catalog and discover data assets."
+    },
+    {
+      "service": "data-analytics",
+      "type": "data-science-notebook",
+      "description": "Data Science - Notebook sessions",
+      "unit": "OCPU per hour",
+      "pricePerUnit": 0.025,
+      "currency": "USD",
+      "notes": "Same as compute pricing. JupyterLab environment."
+    },
+    {
+      "service": "data-analytics",
+      "type": "data-science-jobs",
+      "description": "Data Science - ML jobs",
+      "unit": "OCPU per hour",
+      "pricePerUnit": 0.025,
+      "currency": "USD",
+      "notes": "Same as compute pricing. Distributed ML training."
+    },
+    {
+      "service": "data-analytics",
+      "type": "data-science-model-deployment",
+      "description": "Data Science - Model deployment",
+      "unit": "OCPU per hour",
+      "pricePerUnit": 0.025,
+      "currency": "USD",
+      "notes": "Same as compute pricing. Managed inference endpoints."
+    },
+    {
+      "service": "data-analytics",
+      "type": "big-data-service",
+      "description": "Big Data Service - Managed Hadoop/Spark cluster",
+      "unit": "OCPU per hour",
+      "pricePerUnit": 0.025,
+      "currency": "USD",
+      "notes": "Compute pricing only. Hadoop, Spark, Kafka, Flink included."
+    },
+    {
+      "service": "data-analytics",
+      "type": "goldengate",
+      "description": "GoldenGate - Real-time data replication",
+      "unit": "OCPU per hour",
+      "pricePerUnit": 0.625,
+      "currency": "USD",
+      "notes": "Per OCPU-hour. Heterogeneous data replication and streaming."
+    }
+  ],
+  "aiMl": [
+    {
+      "service": "ai-ml",
+      "type": "genai-cohere-command",
+      "description": "Generative AI - Cohere Command (chat/generation)",
+      "unit": "1000 tokens",
+      "pricePerUnit": 0.0015,
+      "currency": "USD",
+      "notes": "Per 1K input tokens. Output tokens priced higher."
+    },
+    {
+      "service": "ai-ml",
+      "type": "genai-cohere-command-output",
+      "description": "Generative AI - Cohere Command output tokens",
+      "unit": "1000 tokens",
+      "pricePerUnit": 0.002,
+      "currency": "USD",
+      "notes": "Per 1K output tokens generated."
+    },
+    {
+      "service": "ai-ml",
+      "type": "genai-llama-70b",
+      "description": "Generative AI - Meta Llama 3 70B",
+      "unit": "1000 tokens",
+      "pricePerUnit": 0.00265,
+      "currency": "USD",
+      "notes": "Per 1K input tokens. Latest Llama models available."
+    },
+    {
+      "service": "ai-ml",
+      "type": "genai-llama-70b-output",
+      "description": "Generative AI - Meta Llama 3 70B output tokens",
+      "unit": "1000 tokens",
+      "pricePerUnit": 0.0035,
+      "currency": "USD",
+      "notes": "Per 1K output tokens generated."
+    },
+    {
+      "service": "ai-ml",
+      "type": "genai-embed",
+      "description": "Generative AI - Cohere Embed (embeddings)",
+      "unit": "1000 tokens",
+      "pricePerUnit": 0.0001,
+      "currency": "USD",
+      "notes": "Per 1K tokens for text embeddings."
+    },
+    {
+      "service": "ai-ml",
+      "type": "genai-dedicated-cluster",
+      "description": "Generative AI - Dedicated AI Cluster",
+      "unit": "unit per hour",
+      "pricePerUnit": 24.00,
+      "currency": "USD",
+      "notes": "Dedicated GPU hosting for fine-tuning and high-throughput inference."
+    },
+    {
+      "service": "ai-ml",
+      "type": "ai-vision",
+      "description": "AI Vision - Image analysis",
+      "unit": "1000 transactions",
+      "pricePerUnit": 1.00,
+      "currency": "USD",
+      "freePerMonth": 5000,
+      "notes": "First 5K transactions/month free. Object detection, OCR, classification."
+    },
+    {
+      "service": "ai-ml",
+      "type": "ai-speech",
+      "description": "AI Speech - Speech to text",
+      "unit": "hour of audio",
+      "pricePerUnit": 1.00,
+      "currency": "USD",
+      "freePerMonth": 5,
+      "notes": "First 5 hours/month free. Transcription service."
+    },
+    {
+      "service": "ai-ml",
+      "type": "ai-language",
+      "description": "AI Language - Text analysis",
+      "unit": "1000 transactions",
+      "pricePerUnit": 1.00,
+      "currency": "USD",
+      "freePerMonth": 5000,
+      "notes": "First 5K transactions/month free. NER, sentiment, translation."
+    },
+    {
+      "service": "ai-ml",
+      "type": "ai-document",
+      "description": "AI Document Understanding - Document processing",
+      "unit": "1000 pages",
+      "pricePerUnit": 1.50,
+      "currency": "USD",
+      "freePerMonth": 5000,
+      "notes": "First 5K pages/month free. Table extraction, key-value pairs."
+    },
+    {
+      "service": "ai-ml",
+      "type": "ai-anomaly-detection",
+      "description": "AI Anomaly Detection - Time series analysis",
+      "unit": "1000 datapoints",
+      "pricePerUnit": 0.10,
+      "currency": "USD",
+      "freePerMonth": 300000,
+      "notes": "First 300K datapoints/month free. Multivariate anomaly detection."
+    }
+  ],
+  "edge": [
+    {
+      "service": "edge",
+      "type": "dns-queries",
+      "description": "DNS - Query resolution",
+      "unit": "million queries",
+      "pricePerUnit": 0.75,
+      "currency": "USD",
+      "freePerMonth": 1000000000,
+      "notes": "First 1B queries/month free. Zone management is free."
+    },
+    {
+      "service": "edge",
+      "type": "dns-zones",
+      "description": "DNS - Zone management",
+      "unit": "zone",
+      "pricePerUnit": 0,
+      "currency": "USD",
+      "notes": "FREE - Create and manage DNS zones."
+    },
+    {
+      "service": "edge",
+      "type": "email-delivery",
+      "description": "Email Delivery - Transactional email",
+      "unit": "1000 emails",
+      "pricePerUnit": 0.085,
+      "currency": "USD",
+      "freePerMonth": 3000,
+      "notes": "First 3000 emails/month free. Includes tracking and analytics."
+    }
+  ],
   "services": [
     {
       "name": "Compute",
@@ -768,10 +1254,178 @@
     },
     {
       "name": "Functions",
-      "category": "developer-services",
+      "category": "serverless",
       "description": "Serverless compute",
       "pricingTypes": ["Invocations", "Memory-Duration"],
       "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/Functions/home.htm"
+    },
+    {
+      "name": "Container Instances",
+      "category": "containers",
+      "description": "Serverless container execution",
+      "pricingTypes": ["OCPU", "Memory"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/container-instances/home.htm"
+    },
+    {
+      "name": "Container Registry",
+      "category": "containers",
+      "description": "Docker image registry",
+      "pricingTypes": ["Storage"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/Registry/home.htm"
+    },
+    {
+      "name": "Streaming",
+      "category": "serverless",
+      "description": "Kafka-compatible event streaming",
+      "pricingTypes": ["Storage", "Partitions", "Data Transfer"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/Streaming/home.htm"
+    },
+    {
+      "name": "Queue",
+      "category": "serverless",
+      "description": "Managed message queue",
+      "pricingTypes": ["Requests"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/queue/home.htm"
+    },
+    {
+      "name": "Events",
+      "category": "serverless",
+      "description": "Event routing service",
+      "pricingTypes": ["Events"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/Events/home.htm"
+    },
+    {
+      "name": "Bastion",
+      "category": "security",
+      "description": "Secure access to private resources",
+      "pricingTypes": ["Free"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/Bastion/home.htm"
+    },
+    {
+      "name": "Vault",
+      "category": "security",
+      "description": "Key management and secrets",
+      "pricingTypes": ["Virtual Private Vault", "Key Versions"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/home.htm"
+    },
+    {
+      "name": "Web Application Firewall",
+      "category": "security",
+      "description": "WAF protection for web apps",
+      "pricingTypes": ["Requests"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/WAF/home.htm"
+    },
+    {
+      "name": "Cloud Guard",
+      "category": "security",
+      "description": "Security posture management",
+      "pricingTypes": ["Free"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/cloud-guard/home.htm"
+    },
+    {
+      "name": "Logging Analytics",
+      "category": "observability",
+      "description": "Log analysis and insights",
+      "pricingTypes": ["Active Storage", "Archive Storage"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/logging-analytics/home.htm"
+    },
+    {
+      "name": "Application Performance Monitoring",
+      "category": "observability",
+      "description": "APM and distributed tracing",
+      "pricingTypes": ["Tracing", "Synthetic Monitoring"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/application-performance-monitoring/home.htm"
+    },
+    {
+      "name": "Notifications",
+      "category": "observability",
+      "description": "Pub/sub messaging",
+      "pricingTypes": ["Messages"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/Notification/home.htm"
+    },
+    {
+      "name": "Data Flow",
+      "category": "data-analytics",
+      "description": "Managed Apache Spark",
+      "pricingTypes": ["OCPU Hours"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/data-flow/home.htm"
+    },
+    {
+      "name": "Data Integration",
+      "category": "data-analytics",
+      "description": "ETL and data pipelines",
+      "pricingTypes": ["OCPU Hours"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/data-integration/home.htm"
+    },
+    {
+      "name": "Data Catalog",
+      "category": "data-analytics",
+      "description": "Metadata management",
+      "pricingTypes": ["Free"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/data-catalog/home.htm"
+    },
+    {
+      "name": "Big Data Service",
+      "category": "data-analytics",
+      "description": "Managed Hadoop and Spark",
+      "pricingTypes": ["OCPU Hours"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/bigdata/home.htm"
+    },
+    {
+      "name": "GoldenGate",
+      "category": "data-analytics",
+      "description": "Real-time data replication",
+      "pricingTypes": ["OCPU Hours"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/goldengate/home.htm"
+    },
+    {
+      "name": "AI Vision",
+      "category": "ai-ml",
+      "description": "Image analysis and OCR",
+      "pricingTypes": ["Transactions"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/vision/home.htm"
+    },
+    {
+      "name": "AI Speech",
+      "category": "ai-ml",
+      "description": "Speech to text",
+      "pricingTypes": ["Audio Hours"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/speech/home.htm"
+    },
+    {
+      "name": "AI Language",
+      "category": "ai-ml",
+      "description": "NLP and text analysis",
+      "pricingTypes": ["Transactions"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/language/home.htm"
+    },
+    {
+      "name": "AI Document Understanding",
+      "category": "ai-ml",
+      "description": "Document processing",
+      "pricingTypes": ["Pages"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/document-understanding/home.htm"
+    },
+    {
+      "name": "AI Anomaly Detection",
+      "category": "ai-ml",
+      "description": "Time series anomaly detection",
+      "pricingTypes": ["Datapoints"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/anomaly-detection/home.htm"
+    },
+    {
+      "name": "DNS",
+      "category": "edge",
+      "description": "Domain name resolution",
+      "pricingTypes": ["Queries"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/DNS/home.htm"
+    },
+    {
+      "name": "Email Delivery",
+      "category": "edge",
+      "description": "Transactional email service",
+      "pricingTypes": ["Emails"],
+      "documentationUrl": "https://docs.oracle.com/en-us/iaas/Content/Email/home.htm"
     }
   ],
   "regions": [
@@ -812,20 +1466,54 @@
     "description": "OCI Always Free tier - never expires",
     "compute": {
       "arm": "4 OCPUs + 24 GB memory (Ampere A1)",
-      "amd": "1/8 OCPU + 1 GB memory (E4 Micro)"
+      "amd": "1/8 OCPU + 1 GB memory (E4 Micro)",
+      "containerInstances": "3000 OCPU-hours + 18000 GB-hours/month (A1)"
     },
     "storage": {
       "blockVolume": "200 GB total",
       "objectStorage": "10 GB Standard tier",
-      "archive": "10 GB Archive tier"
+      "archive": "10 GB Archive tier",
+      "containerRegistry": "5 GB image storage"
     },
     "database": {
-      "autonomous": "2 Autonomous Databases, 20 GB each"
+      "autonomous": "2 Autonomous Databases, 20 GB each",
+      "nosql": "25 GB storage, 200M reads, 50M writes/month"
     },
     "networking": {
       "loadBalancer": "1 Flexible LB (10 Mbps)",
-      "dataEgress": "10 TB/month"
+      "dataEgress": "10 TB/month",
+      "dns": "1 billion queries/month",
+      "vcn": "Unlimited VCNs, subnets, security lists"
     },
-    "notes": "Free tier resources available in home region only. Some limits apply."
+    "serverless": {
+      "functions": "2M invocations + 400K GB-seconds/month",
+      "apiGateway": "2M calls/month",
+      "events": "1M events/month",
+      "queue": "1M requests/month",
+      "notifications": "1M messages/month"
+    },
+    "observability": {
+      "logging": "10 GB ingestion/month",
+      "monitoring": "500M custom metric datapoints/month",
+      "apm": "1000 trace events/hour"
+    },
+    "security": {
+      "bastion": "Unlimited sessions (free service)",
+      "cloudGuard": "Free threat detection",
+      "vulnerabilityScanning": "Free host/container scanning",
+      "softwareKeys": "Unlimited software-protected keys"
+    },
+    "aiMl": {
+      "vision": "5K transactions/month",
+      "speech": "5 hours transcription/month",
+      "language": "5K transactions/month",
+      "documentUnderstanding": "5K pages/month",
+      "anomalyDetection": "300K datapoints/month"
+    },
+    "dataAnalytics": {
+      "dataFlow": "20 OCPU-hours/month",
+      "dataCatalog": "Unlimited (free service)"
+    },
+    "notes": "Free tier resources available in home region only. Some limits apply. Never expires for Always Free resources."
   }
 }
