@@ -1,0 +1,52 @@
+{
+  "name": "oci-pricing-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Oracle Cloud Infrastructure pricing data",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "oci-pricing-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "oracle",
+    "oci",
+    "cloud",
+    "pricing",
+    "cost",
+    "ai",
+    "claude"
+  ],
+  "author": {
+    "name": "Jason Wilbur",
+    "url": "https://jasonwilbur.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonwilbur/oci-pricing-mcp"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
