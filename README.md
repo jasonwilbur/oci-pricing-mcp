@@ -211,24 +211,24 @@ This MCP server supports two data modes:
 
 ### Bundled Data (Default)
 
-Pricing data is sourced from [Oracle Cloud Price List](https://www.oracle.com/cloud/price-list/) and bundled with the server. This provides fast, offline access to 101 curated SKUs across 12 service categories.
+Pricing data is synced from Oracle's public pricing API and bundled with the server. This provides fast, offline access to the complete OCI pricing catalog.
 
-- **Last updated**: January 2026
-- **SKUs**: 101 products
-- **Categories**: 12 (compute, storage, database, networking, kubernetes, serverless, containers, observability, security, data analytics, AI/ML, edge)
+- **Products**: 602 SKUs (full API dataset)
+- **Categories**: 109 service categories
+- **Detailed compute shapes**: 15 curated shapes with OCPU/memory breakdowns
+- **Timestamps**: `apiLastUpdated` and `bundledDataGenerated` for verification
 
 ### Real-Time API
 
-For the most current pricing, use the `fetch_realtime_pricing` tool which queries Oracle's public pricing API directly:
+For the most current pricing between releases, use `fetch_realtime_pricing` which queries Oracle's API directly:
 
 ```
 https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/
 ```
 
-- **Products**: 600+ SKUs
-- **Categories**: 109 service categories
 - **Authentication**: None required (public API)
 - **Multi-currency**: USD, EUR, GBP, JPY, AUD, CAD, and more
+- **Updates**: Oracle updates pricing data periodically
 
 ## FAQ
 
@@ -238,12 +238,12 @@ Yes! Oracle provides a public pricing API at `https://apexapps.oracle.com/pls/ap
 
 ### Where does the pricing data come from?
 
-- **Bundled data**: Curated from [Oracle Cloud Price List](https://www.oracle.com/cloud/price-list/) and included in the npm package
-- **Real-time data**: Fetched directly from Oracle's public pricing API
+- **Bundled data**: Full dataset synced from Oracle's public pricing API and included in the npm package
+- **Real-time data**: Fetched directly from Oracle's public pricing API on-demand
 
 ### How often is the bundled data updated?
 
-The bundled pricing data is updated with each npm release. Use `fetch_realtime_pricing` for the most current prices between releases.
+The bundled pricing data is synced from Oracle's API with each npm release. Check `metadata.bundledDataGenerated` for the sync date. Use `fetch_realtime_pricing` between releases to check for updates.
 
 ### Why are prices the same across all regions?
 
@@ -256,6 +256,26 @@ Unlike AWS, Azure, and GCP, Oracle Cloud Infrastructure maintains **consistent g
 ### Can I query my actual OCI spend?
 
 This MCP server provides pricing data, not account spend. For actual usage and spend tracking, you would need to use the OCI Cost Management APIs with proper authentication. This could be added as a future enhancement.
+
+### What's NOT included in the pricing data?
+
+The bundled data includes all 602 products from Oracle's public pricing API. However, some pricing is not available through this API:
+
+- **Committed use discounts** - Only Pay-As-You-Go pricing is shown; annual/3-year commits require Oracle sales
+- **Government/sovereign cloud** - Dedicated government regions have separate pricing
+- **Oracle SaaS products** - Fusion Apps, NetSuite, etc. are separate from OCI IaaS
+- **Custom/negotiated pricing** - Enterprise agreements with volume discounts
+- **Support costs** - Premier Support pricing is separate
+
+For these, contact [Oracle Sales](https://www.oracle.com/cloud/contact/) or check the [Oracle Cloud Price List](https://www.oracle.com/cloud/price-list/) directly.
+
+### How do I verify the pricing is accurate?
+
+Each bundled data release includes timestamps:
+- `apiLastUpdated`: When Oracle last updated their pricing API
+- `bundledDataGenerated`: When this package synced the data
+
+You can verify prices against [Oracle's official price list](https://www.oracle.com/cloud/price-list/) or use the `fetch_realtime_pricing` tool to get live data.
 
 ## Development
 
