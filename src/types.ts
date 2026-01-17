@@ -236,14 +236,54 @@ export interface ServiceCatalogEntry {
   documentationUrl: string;
 }
 
+// Pricing data metadata
+export interface PricingMetadata {
+  source: string;
+  sourceUrl: string;
+  verifyUrl: string;
+  apiLastUpdated: string;
+  bundledDataGenerated: string;
+  totalProducts: number;
+  totalCategories: number;
+  currency: string;
+  pricingModel: string;
+  notes: string;
+}
+
+// Full API product entry
+export interface APIProduct {
+  partNumber: string;
+  displayName: string;
+  metricName: string;
+  serviceCategory: string;
+  priceUSD: number;
+}
+
+// Region info
+export interface RegionInfo {
+  name: string;
+  location: string;
+  type: string;
+}
+
 // Full pricing data structure
 export interface OCIPricingData {
-  lastUpdated: string;
-  source: string;
+  metadata: PricingMetadata;
   compute: ComputeShapePricing[];
   storage: StoragePricing[];
   database: DatabasePricing[];
   networking: NetworkingPricing[];
   kubernetes: KubernetesPricing[];
+  serverless?: PricingItem[];
+  containers?: PricingItem[];
+  observability?: PricingItem[];
+  security?: PricingItem[];
+  dataAnalytics?: PricingItem[];
+  aiMl?: PricingItem[];
+  edge?: PricingItem[];
+  products: APIProduct[];
+  categories: string[];
+  regions: RegionInfo[];
+  freeTier: Record<string, unknown>;
   services: ServiceCatalogEntry[];
 }

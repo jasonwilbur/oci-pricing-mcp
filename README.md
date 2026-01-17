@@ -2,6 +2,8 @@
 
 A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that provides Oracle Cloud Infrastructure pricing data to AI assistants like Claude.
 
+> **Important Note:** This server provides pricing data from Oracle's public pricing API and bundled data. We cannot guarantee that AI assistants will always interpret pricing correctly or identify the absolute cheapest options. Always verify pricing on [Oracle's official price list](https://www.oracle.com/cloud/price-list/) before making decisions. All API calls are free of charge (no authentication required).
+
 ## Why This Exists
 
 AWS, Azure, and GCP all have pricing MCP servers. OCI did not - until now.
@@ -12,6 +14,49 @@ AWS, Azure, and GCP all have pricing MCP servers. OCI did not - until now.
 | Azure | [azure-pricing-mcp](https://github.com/charris-msft/azure-pricing-mcp) | Community |
 | GCP | [gcp-cost-mcp-server](https://github.com/nozomi-koborinai/gcp-cost-mcp-server) | Community |
 | OCI | **oci-pricing-mcp** | Community |
+
+### Example: "How much does a 4 OCPU, 32GB VM cost on OCI?"
+
+**You ask Claude:**
+> What's the monthly cost for a VM with 4 OCPUs and 32GB RAM on OCI?
+
+**Claude responds (using this MCP):**
+```
+For a VM.Standard.E5.Flex with 4 OCPUs and 32GB RAM:
+
+  OCPU cost:    4 OCPUs × $0.03/hr = $0.12/hr
+  Memory cost:  32 GB × $0.002/hr  = $0.064/hr
+  Total hourly: $0.184/hr
+
+  Monthly cost (730 hrs): $134.32
+
+For comparison, the Arm-based A1 shape would be significantly cheaper:
+
+  A1 total:     4 × $0.01 + 32 × $0.0015 = $0.088/hr
+  Monthly:      $64.24 (52% savings)
+```
+
+### Example: "Compare OCI vs AWS for data egress"
+
+**You ask Claude:**
+> How much would I save on OCI vs AWS for 5TB of monthly data egress?
+
+**Claude responds (using this MCP):**
+```
+Data Egress Cost Comparison (5 TB/month):
+
+  OCI:
+    First 10 TB free → $0.00
+
+  AWS:
+    First 10 GB: free
+    Next 9.99 TB @ $0.09/GB → ~$450/month
+
+  Monthly savings with OCI: $450 (100% savings)
+
+OCI includes 10 TB of free outbound data transfer monthly,
+making it significantly more cost-effective for data-heavy workloads.
+```
 
 ## Installation
 
@@ -234,7 +279,7 @@ npm run dev
 
 ## License
 
-MIT
+Apache 2.0
 
 ## Contributing
 

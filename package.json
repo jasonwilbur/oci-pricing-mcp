@@ -1,7 +1,7 @@
 {
   "name": "oci-pricing-mcp",
   "version": "1.0.0",
-  "description": "MCP server for Oracle Cloud Infrastructure pricing data",
+  "description": "OCI Pricing MCP Server - Model Context Protocol server for Oracle Cloud Infrastructure pricing information",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
     "name": "Jason Wilbur",
     "url": "https://jasonwilbur.com"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/jasonwilbur/oci-pricing-mcp"
@@ -47,6 +47,7 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "NOTICE"
   ]
 }

@@ -91,11 +91,49 @@ export function getFreeTier() {
     return data.freeTier || null;
 }
 /**
+ * Get pricing metadata
+ */
+export function getPricingMetadata() {
+    const data = getPricingData();
+    return data.metadata;
+}
+/**
  * Get data last updated timestamp
  */
 export function getLastUpdated() {
     const data = getPricingData();
-    return data.lastUpdated;
+    return data.metadata?.apiLastUpdated || data.metadata?.bundledDataGenerated || 'unknown';
+}
+/**
+ * Get all products from bundled data
+ */
+export function getAllProducts() {
+    const data = getPricingData();
+    return data.products || [];
+}
+/**
+ * Get all categories from bundled data
+ */
+export function getCategories() {
+    const data = getPricingData();
+    return data.categories || [];
+}
+/**
+ * Search products by category or search term
+ */
+export function searchProducts(options) {
+    let products = getAllProducts();
+    if (options?.category) {
+        const cat = options.category.toLowerCase();
+        products = products.filter(p => p.serviceCategory.toLowerCase().includes(cat));
+    }
+    if (options?.search) {
+        const search = options.search.toLowerCase();
+        products = products.filter(p => p.displayName.toLowerCase().includes(search) ||
+            p.partNumber.toLowerCase().includes(search) ||
+            p.serviceCategory.toLowerCase().includes(search));
+    }
+    return products;
 }
 /**
  * Force refresh of cached data

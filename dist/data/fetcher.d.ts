@@ -48,19 +48,34 @@ export declare function getServicesCatalog(): import("../types.js").ServiceCatal
 /**
  * Get available regions
  */
-export declare function getRegions(): {
-    name: string;
-    location: string;
-    type: string;
-}[];
+export declare function getRegions(): import("../types.js").RegionInfo[];
 /**
  * Get free tier information
  */
-export declare function getFreeTier(): object | null;
+export declare function getFreeTier(): Record<string, unknown>;
+/**
+ * Get pricing metadata
+ */
+export declare function getPricingMetadata(): import("../types.js").PricingMetadata;
 /**
  * Get data last updated timestamp
  */
 export declare function getLastUpdated(): string;
+/**
+ * Get all products from bundled data
+ */
+export declare function getAllProducts(): import("../types.js").APIProduct[];
+/**
+ * Get all categories from bundled data
+ */
+export declare function getCategories(): string[];
+/**
+ * Search products by category or search term
+ */
+export declare function searchProducts(options?: {
+    category?: string;
+    search?: string;
+}): import("../types.js").APIProduct[];
 /**
  * Force refresh of cached data
  */
