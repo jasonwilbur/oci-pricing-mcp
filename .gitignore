@@ -10,3 +10,5 @@ node_modules/
 *.tgz
 coverage/
 .nyc_output/
+.mcpregistry_*
+mcp-publisher

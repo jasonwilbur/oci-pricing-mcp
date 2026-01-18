@@ -1,6 +1,7 @@
 {
   "name": "oci-pricing-mcp",
-  "version": "1.2.1",
+  "version": "1.2.2",
+  "mcpName": "io.github.jasonwilbur/oci-pricing-mcp",
   "description": "OCI Pricing MCP Server - Model Context Protocol server for Oracle Cloud Infrastructure pricing information",
   "type": "module",
   "main": "dist/index.js",
