@@ -63,7 +63,7 @@ making it significantly more cost-effective for data-heavy workloads.
 ### Quick Install (Recommended)
 
 ```bash
-claude mcp add oci-pricing -- npx github:jasonwilbur/oci-pricing-mcp
+claude mcp add oci-pricing -- npx oci-pricing-mcp
 ```
 
 ### From Source
