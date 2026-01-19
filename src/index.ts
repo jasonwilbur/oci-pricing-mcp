@@ -36,6 +36,20 @@ import { listStorageOptions, calculateStorageCost, compareStorageTiers } from '.
 import { listDatabaseOptions, calculateDatabaseCost, compareDatabaseOptions } from './tools/database.js';
 import { listNetworkingOptions, calculateNetworkingCost, compareDataEgress } from './tools/networking.js';
 import { listKubernetesOptions, calculateKubernetesCost, compareKubernetesProviders } from './tools/kubernetes.js';
+import { listMulticloudDatabases, getMulticloudAvailabilityMatrix, calculateMulticloudDatabaseCost, compareMulticloudVsOCI } from './tools/multicloud.js';
+import {
+  listAIMLServices,
+  listObservabilityServices,
+  listIntegrationServices,
+  listSecurityServices,
+  listAnalyticsServices,
+  listDeveloperServices,
+  listMediaServices,
+  listVMwareServices,
+  listEdgeServices,
+  listGovernanceServices,
+  getServicesSummary
+} from './tools/services.js';
 import { getLastUpdated, getFreeTier, fetchRealTimePricing, getRealTimeCategories } from './data/fetcher.js';
 
 // Create server instance
@@ -452,6 +466,247 @@ const TOOLS = [
       properties: {},
     },
   },
+  // Multicloud database tools
+  {
+    name: 'list_multicloud_databases',
+    description: 'List Oracle database services available on Azure, AWS, and Google Cloud (Database@Azure, Database@AWS, Database@Google Cloud).',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        provider: {
+          type: 'string',
+          enum: ['azure', 'aws', 'gcp'],
+          description: 'Filter by cloud provider',
+        },
+        databaseType: {
+          type: 'string',
+          enum: ['autonomous', 'exadata', 'base-db'],
+          description: 'Filter by database type',
+        },
+      },
+    },
+  },
+  {
+    name: 'get_multicloud_availability',
+    description: 'Get the full availability matrix showing which Oracle database products are available on which cloud providers.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {},
+    },
+  },
+  {
+    name: 'calculate_multicloud_database_cost',
+    description: 'Calculate estimated monthly cost for running Oracle database on Azure, AWS, or Google Cloud.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        provider: {
+          type: 'string',
+          enum: ['azure', 'aws', 'gcp'],
+          description: 'Cloud provider',
+        },
+        databaseType: {
+          type: 'string',
+          enum: ['autonomous-serverless', 'autonomous-dedicated', 'exadata', 'exascale', 'base-db'],
+          description: 'Database type',
+        },
+        computeUnits: {
+          type: 'number',
+          description: 'Number of ECPUs or OCPUs',
+        },
+        storageGB: {
+          type: 'number',
+          description: 'Storage size in GB',
+        },
+        licenseType: {
+          type: 'string',
+          enum: ['included', 'byol'],
+          description: 'License type (included or bring your own)',
+        },
+      },
+      required: ['provider', 'databaseType', 'computeUnits', 'storageGB'],
+    },
+  },
+  {
+    name: 'compare_multicloud_vs_oci',
+    description: 'Compare costs of running Oracle database on OCI vs Azure/AWS/GCP. Shows price parity and billing differences.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        databaseType: {
+          type: 'string',
+          enum: ['autonomous-serverless', 'autonomous-dedicated', 'exadata', 'exascale', 'base-db'],
+          description: 'Database type to compare',
+        },
+        computeUnits: {
+          type: 'number',
+          description: 'Number of ECPUs or OCPUs',
+        },
+        storageGB: {
+          type: 'number',
+          description: 'Storage size in GB',
+        },
+      },
+      required: ['databaseType', 'computeUnits', 'storageGB'],
+    },
+  },
+  // AI/ML Services
+  {
+    name: 'list_aiml_services',
+    description: 'List OCI AI/ML services including Generative AI (Cohere, Meta Llama, xAI Grok), Vision, Speech, Language, and Document Understanding.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['generative-ai', 'generative-ai-agents', 'vision', 'speech', 'language', 'document-understanding', 'digital-assistant'],
+          description: 'Filter by AI/ML service type',
+        },
+        model: {
+          type: 'string',
+          description: 'Filter by model (e.g., "cohere", "llama", "grok")',
+        },
+      },
+    },
+  },
+  // Observability Services
+  {
+    name: 'list_observability_services',
+    description: 'List OCI Observability services including APM, Logging, Log Analytics, Monitoring, and Stack Monitoring.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['apm', 'logging', 'log-analytics', 'monitoring', 'notifications', 'ops-insights', 'stack-monitoring'],
+          description: 'Filter by observability service type',
+        },
+      },
+    },
+  },
+  // Integration Services
+  {
+    name: 'list_integration_services',
+    description: 'List OCI Integration services including Integration Cloud (OIC), GoldenGate, Data Integration, Streaming, and Queue.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['integration-cloud', 'goldengate', 'data-integration', 'streaming', 'queue'],
+          description: 'Filter by integration service type',
+        },
+      },
+    },
+  },
+  // Security Services
+  {
+    name: 'list_security_services',
+    description: 'List OCI Security services including Data Safe, Cloud Guard, Vault, WAF, and Network Firewall.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['data-safe', 'cloud-guard', 'vault', 'waf', 'network-firewall', 'vulnerability-scanning', 'bastion'],
+          description: 'Filter by security service type',
+        },
+      },
+    },
+  },
+  // Analytics Services
+  {
+    name: 'list_analytics_services',
+    description: 'List OCI Analytics services including Analytics Cloud, Big Data Service, Data Flow, and Data Science.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['analytics-cloud', 'big-data', 'data-flow', 'data-catalog', 'data-science'],
+          description: 'Filter by analytics service type',
+        },
+      },
+    },
+  },
+  // Developer Services
+  {
+    name: 'list_developer_services',
+    description: 'List OCI Developer services including Functions, Container Instances, API Gateway, APEX, and DevOps.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['functions', 'container-instances', 'api-gateway', 'apex', 'devops'],
+          description: 'Filter by developer service type',
+        },
+      },
+    },
+  },
+  // Media Services
+  {
+    name: 'list_media_services',
+    description: 'List OCI Media Services including Media Flow (transcoding) and Media Streams (live/VOD streaming).',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['media-flow', 'media-streams'],
+          description: 'Filter by media service type',
+        },
+      },
+    },
+  },
+  // VMware Services
+  {
+    name: 'list_vmware_services',
+    description: 'List Oracle Cloud VMware Solution (OCVS) pricing for running VMware workloads on OCI.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {},
+    },
+  },
+  // Edge Services
+  {
+    name: 'list_edge_services',
+    description: 'List OCI Edge services including DNS, Email Delivery, and Health Checks.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['dns', 'email-delivery', 'healthchecks'],
+          description: 'Filter by edge service type',
+        },
+      },
+    },
+  },
+  // Governance Services
+  {
+    name: 'list_governance_services',
+    description: 'List OCI Governance services including Access Governance, Fleet Management, and License Manager.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['access-governance', 'fleet-management', 'license-manager'],
+          description: 'Filter by governance service type',
+        },
+      },
+    },
+  },
+  // Services Summary
+  {
+    name: 'get_services_summary',
+    description: 'Get a summary of all OCI services with pricing data, including counts by category and coverage information.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {},
+    },
+  },
 ];
 
 // Handle list tools request
@@ -577,6 +832,55 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           categories: await getRealTimeCategories(),
           note: 'Categories from Oracle\'s real-time pricing API',
         };
+        break;
+
+      // Multicloud database tools
+      case 'list_multicloud_databases':
+        result = listMulticloudDatabases(typedArgs);
+        break;
+      case 'get_multicloud_availability':
+        result = getMulticloudAvailabilityMatrix();
+        break;
+      case 'calculate_multicloud_database_cost':
+        result = calculateMulticloudDatabaseCost(typedArgs);
+        break;
+      case 'compare_multicloud_vs_oci':
+        result = compareMulticloudVsOCI(typedArgs);
+        break;
+
+      // New service category tools
+      case 'list_aiml_services':
+        result = listAIMLServices(typedArgs);
+        break;
+      case 'list_observability_services':
+        result = listObservabilityServices(typedArgs);
+        break;
+      case 'list_integration_services':
+        result = listIntegrationServices(typedArgs);
+        break;
+      case 'list_security_services':
+        result = listSecurityServices(typedArgs);
+        break;
+      case 'list_analytics_services':
+        result = listAnalyticsServices(typedArgs);
+        break;
+      case 'list_developer_services':
+        result = listDeveloperServices(typedArgs);
+        break;
+      case 'list_media_services':
+        result = listMediaServices(typedArgs);
+        break;
+      case 'list_vmware_services':
+        result = listVMwareServices();
+        break;
+      case 'list_edge_services':
+        result = listEdgeServices(typedArgs);
+        break;
+      case 'list_governance_services':
+        result = listGovernanceServices(typedArgs);
+        break;
+      case 'get_services_summary':
+        result = getServicesSummary();
         break;
 
       default:

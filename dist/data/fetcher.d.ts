@@ -2,7 +2,7 @@
  * OCI Pricing Data Fetcher
  * Loads pricing data from bundled JSON or real-time Oracle API
  */
-import type { OCIPricingData } from '../types.js';
+import type { OCIPricingData, MulticloudData, MulticloudProvider, MulticloudDatabaseType, MulticloudDatabaseAvailability, MulticloudDatabasePricing, AIMLPricing, ObservabilityPricing, IntegrationPricing, SecurityPricing, AnalyticsPricing, DeveloperPricing, MediaPricing, VMwarePricing, EdgePricing, GovernancePricing } from '../types.js';
 export interface RealTimePriceItem {
     partNumber: string;
     displayName: string;
@@ -93,4 +93,63 @@ export declare function fetchRealTimePricing(options?: {
  * Get available service categories from real-time API
  */
 export declare function getRealTimeCategories(): Promise<string[]>;
+/**
+ * Get multicloud data
+ */
+export declare function getMulticloudData(): MulticloudData | null;
+/**
+ * Get multicloud availability matrix
+ */
+export declare function getMulticloudAvailability(): MulticloudDatabaseAvailability[];
+/**
+ * Get multicloud pricing data with optional filters
+ */
+export declare function getMulticloudPricing(options?: {
+    provider?: MulticloudProvider;
+    databaseType?: MulticloudDatabaseType;
+}): MulticloudDatabasePricing[];
+/**
+ * Get AI/ML pricing data
+ */
+export declare function getAIMLPricing(type?: string): AIMLPricing[];
+/**
+ * Get Observability pricing data
+ */
+export declare function getObservabilityPricing(type?: string): ObservabilityPricing[];
+/**
+ * Get Integration pricing data
+ */
+export declare function getIntegrationPricing(type?: string): IntegrationPricing[];
+/**
+ * Get Security pricing data
+ */
+export declare function getSecurityPricing(type?: string): SecurityPricing[];
+/**
+ * Get Analytics pricing data
+ */
+export declare function getAnalyticsPricing(type?: string): AnalyticsPricing[];
+/**
+ * Get Developer services pricing data
+ */
+export declare function getDeveloperPricing(type?: string): DeveloperPricing[];
+/**
+ * Get Media services pricing data
+ */
+export declare function getMediaPricing(type?: string): MediaPricing[];
+/**
+ * Get VMware pricing data
+ */
+export declare function getVMwarePricing(): VMwarePricing[];
+/**
+ * Get Edge services pricing data
+ */
+export declare function getEdgePricing(type?: string): EdgePricing[];
+/**
+ * Get Governance pricing data
+ */
+export declare function getGovernancePricing(type?: string): GovernancePricing[];
+/**
+ * Get all service categories with counts
+ */
+export declare function getServiceCategoryCounts(): Record<string, number>;
 //# sourceMappingURL=fetcher.d.ts.map

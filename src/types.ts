@@ -2,6 +2,52 @@
  * OCI Pricing MCP Server - Type Definitions
  */
 
+// Multicloud provider types
+export type MulticloudProvider = 'azure' | 'aws' | 'gcp';
+
+// Multicloud database types (simplified for availability tracking)
+export type MulticloudDatabaseType =
+  | 'autonomous-serverless'
+  | 'autonomous-dedicated'
+  | 'exadata'
+  | 'exascale'
+  | 'base-db';
+
+// Multicloud database availability entry
+export interface MulticloudDatabaseAvailability {
+  databaseType: MulticloudDatabaseType;
+  displayName: string;
+  azure: boolean;
+  aws: boolean;
+  gcp: boolean;
+  notes?: string;
+}
+
+// Multicloud pricing entry
+export interface MulticloudDatabasePricing {
+  databaseType: MulticloudDatabaseType;
+  provider: MulticloudProvider;
+  available: boolean;
+  pricingModel: 'marketplace' | 'private-offer' | 'price-parity-estimate';
+  ecpuPrice?: number;
+  ocpuPrice?: number;
+  storagePrice?: number;
+  licenseIncludedPrice?: number;
+  byolPrice?: number;
+  licenseIncluded: boolean;
+  byolAvailable: boolean;
+  billingNote: string;
+  marketplaceUrl?: string;
+}
+
+// Multicloud data structure
+export interface MulticloudData {
+  availability: MulticloudDatabaseAvailability[];
+  pricing: MulticloudDatabasePricing[];
+  lastUpdated: string;
+  notes: string[];
+}
+
 // OCI Regions
 export type OCIRegion =
   | 'us-ashburn-1'
@@ -170,6 +216,247 @@ export interface KubernetesPricing extends PricingItem {
   nodePoolFee?: number;
 }
 
+// AI/ML Service Types
+export type AIMLServiceType =
+  | 'generative-ai'
+  | 'generative-ai-agents'
+  | 'vision'
+  | 'speech'
+  | 'language'
+  | 'document-understanding'
+  | 'digital-assistant'
+  | 'anomaly-detection'
+  | 'forecasting'
+  | 'data-labeling';
+
+// AI/ML Pricing
+export interface AIMLPricing {
+  service: 'ai-ml';
+  type: AIMLServiceType;
+  name: string;
+  description: string;
+  model?: string;
+  pricingTier: 'on-demand' | 'dedicated' | 'committed';
+  unit: string;
+  pricePerUnit: number;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Observability Service Types
+export type ObservabilityServiceType =
+  | 'apm'
+  | 'logging'
+  | 'log-analytics'
+  | 'monitoring'
+  | 'notifications'
+  | 'ops-insights'
+  | 'stack-monitoring'
+  | 'service-connector';
+
+// Observability Pricing
+export interface ObservabilityPricing {
+  service: 'observability';
+  type: ObservabilityServiceType;
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  freeAllowance?: number;
+  freeAllowanceUnit?: string;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Integration Service Types
+export type IntegrationServiceType =
+  | 'integration-cloud'
+  | 'goldengate'
+  | 'data-integration'
+  | 'streaming'
+  | 'queue'
+  | 'events'
+  | 'api-gateway';
+
+// Integration Pricing
+export interface IntegrationPricing {
+  service: 'integration';
+  type: IntegrationServiceType;
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Security Service Types
+export type SecurityServiceType =
+  | 'data-safe'
+  | 'cloud-guard'
+  | 'vault'
+  | 'key-management'
+  | 'waf'
+  | 'network-firewall'
+  | 'vulnerability-scanning'
+  | 'bastion'
+  | 'certificates';
+
+// Security Pricing
+export interface SecurityPricing {
+  service: 'security';
+  type: SecurityServiceType;
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  freeAllowance?: number;
+  freeAllowanceUnit?: string;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Analytics Service Types
+export type AnalyticsServiceType =
+  | 'analytics-cloud'
+  | 'big-data'
+  | 'data-flow'
+  | 'data-catalog'
+  | 'data-science';
+
+// Analytics Pricing
+export interface AnalyticsPricing {
+  service: 'analytics';
+  type: AnalyticsServiceType;
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Developer Service Types
+export type DeveloperServiceType =
+  | 'functions'
+  | 'container-instances'
+  | 'api-gateway'
+  | 'apex'
+  | 'devops'
+  | 'resource-manager'
+  | 'visual-builder';
+
+// Developer Services Pricing
+export interface DeveloperPricing {
+  service: 'developer';
+  type: DeveloperServiceType;
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  freeAllowance?: number;
+  freeAllowanceUnit?: string;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Media Service Types
+export type MediaServiceType =
+  | 'media-flow'
+  | 'media-streams';
+
+// Media Pricing
+export interface MediaPricing {
+  service: 'media';
+  type: MediaServiceType;
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// VMware Service Types
+export type VMwareServiceType = 'ocvs';
+
+// VMware Pricing
+export interface VMwarePricing {
+  service: 'vmware';
+  type: VMwareServiceType;
+  name: string;
+  description: string;
+  hostType: string;
+  unit: string;
+  pricePerUnit: number;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Additional Database Types (beyond core)
+export interface AdditionalDatabasePricing {
+  service: 'database';
+  type: string;
+  name: string;
+  description: string;
+  databaseEngine: 'mysql' | 'postgresql' | 'nosql' | 'redis' | 'timesten' | 'other';
+  unit: string;
+  pricePerUnit: number;
+  licenseIncluded?: boolean;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Edge Service Types
+export type EdgeServiceType =
+  | 'dns'
+  | 'email-delivery'
+  | 'web-application-acceleration'
+  | 'healthchecks';
+
+// Edge Services Pricing
+export interface EdgePricing {
+  service: 'edge';
+  type: EdgeServiceType;
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  freeAllowance?: number;
+  freeAllowanceUnit?: string;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Governance Service Types
+export type GovernanceServiceType =
+  | 'access-governance'
+  | 'fleet-management'
+  | 'license-manager';
+
+// Governance Pricing
+export interface GovernancePricing {
+  service: 'governance';
+  type: GovernanceServiceType;
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
 // Monthly cost estimate input
 export interface CostEstimateInput {
   compute?: {
@@ -274,16 +561,22 @@ export interface OCIPricingData {
   database: DatabasePricing[];
   networking: NetworkingPricing[];
   kubernetes: KubernetesPricing[];
-  serverless?: PricingItem[];
-  containers?: PricingItem[];
-  observability?: PricingItem[];
-  security?: PricingItem[];
-  dataAnalytics?: PricingItem[];
-  aiMl?: PricingItem[];
-  edge?: PricingItem[];
+  // New service categories
+  aiMl?: AIMLPricing[];
+  observability?: ObservabilityPricing[];
+  integration?: IntegrationPricing[];
+  security?: SecurityPricing[];
+  analytics?: AnalyticsPricing[];
+  developer?: DeveloperPricing[];
+  media?: MediaPricing[];
+  vmware?: VMwarePricing[];
+  edge?: EdgePricing[];
+  governance?: GovernancePricing[];
+  // Raw data
   products: APIProduct[];
   categories: string[];
   regions: RegionInfo[];
   freeTier: Record<string, unknown>;
   services: ServiceCatalogEntry[];
+  multicloud?: MulticloudData;
 }

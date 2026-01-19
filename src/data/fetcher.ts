@@ -6,7 +6,24 @@
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import type { OCIPricingData } from '../types.js';
+import type {
+  OCIPricingData,
+  MulticloudData,
+  MulticloudProvider,
+  MulticloudDatabaseType,
+  MulticloudDatabaseAvailability,
+  MulticloudDatabasePricing,
+  AIMLPricing,
+  ObservabilityPricing,
+  IntegrationPricing,
+  SecurityPricing,
+  AnalyticsPricing,
+  DeveloperPricing,
+  MediaPricing,
+  VMwarePricing,
+  EdgePricing,
+  GovernancePricing
+} from '../types.js';
 import { pricingCache, CACHE_KEYS } from './cache.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -307,4 +324,190 @@ export async function getRealTimeCategories(): Promise<string[]> {
     categories.add(item.serviceCategory);
   }
   return Array.from(categories).sort();
+}
+
+/**
+ * Get multicloud data
+ */
+export function getMulticloudData(): MulticloudData | null {
+  const data = getPricingData();
+  return data.multicloud || null;
+}
+
+/**
+ * Get multicloud availability matrix
+ */
+export function getMulticloudAvailability(): MulticloudDatabaseAvailability[] {
+  const multicloud = getMulticloudData();
+  return multicloud?.availability || [];
+}
+
+/**
+ * Get multicloud pricing data with optional filters
+ */
+export function getMulticloudPricing(options?: {
+  provider?: MulticloudProvider;
+  databaseType?: MulticloudDatabaseType;
+}): MulticloudDatabasePricing[] {
+  const multicloud = getMulticloudData();
+  if (!multicloud) {
+    return [];
+  }
+
+  let pricing = multicloud.pricing;
+
+  if (options?.provider) {
+    pricing = pricing.filter(p => p.provider === options.provider);
+  }
+
+  if (options?.databaseType) {
+    pricing = pricing.filter(p => p.databaseType === options.databaseType);
+  }
+
+  return pricing;
+}
+
+// ============================================
+// New Service Category Accessors
+// ============================================
+
+/**
+ * Get AI/ML pricing data
+ */
+export function getAIMLPricing(type?: string): AIMLPricing[] {
+  const data = getPricingData();
+  let pricing = data.aiMl || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
+ * Get Observability pricing data
+ */
+export function getObservabilityPricing(type?: string): ObservabilityPricing[] {
+  const data = getPricingData();
+  let pricing = data.observability || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
+ * Get Integration pricing data
+ */
+export function getIntegrationPricing(type?: string): IntegrationPricing[] {
+  const data = getPricingData();
+  let pricing = data.integration || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
+ * Get Security pricing data
+ */
+export function getSecurityPricing(type?: string): SecurityPricing[] {
+  const data = getPricingData();
+  let pricing = data.security || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
+ * Get Analytics pricing data
+ */
+export function getAnalyticsPricing(type?: string): AnalyticsPricing[] {
+  const data = getPricingData();
+  let pricing = data.analytics || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
+ * Get Developer services pricing data
+ */
+export function getDeveloperPricing(type?: string): DeveloperPricing[] {
+  const data = getPricingData();
+  let pricing = data.developer || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
+ * Get Media services pricing data
+ */
+export function getMediaPricing(type?: string): MediaPricing[] {
+  const data = getPricingData();
+  let pricing = data.media || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
+ * Get VMware pricing data
+ */
+export function getVMwarePricing(): VMwarePricing[] {
+  const data = getPricingData();
+  return data.vmware || [];
+}
+
+/**
+ * Get Edge services pricing data
+ */
+export function getEdgePricing(type?: string): EdgePricing[] {
+  const data = getPricingData();
+  let pricing = data.edge || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
+ * Get Governance pricing data
+ */
+export function getGovernancePricing(type?: string): GovernancePricing[] {
+  const data = getPricingData();
+  let pricing = data.governance || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
+ * Get all service categories with counts
+ */
+export function getServiceCategoryCounts(): Record<string, number> {
+  const data = getPricingData();
+  return {
+    compute: data.compute?.length || 0,
+    storage: data.storage?.length || 0,
+    database: data.database?.length || 0,
+    networking: data.networking?.length || 0,
+    kubernetes: data.kubernetes?.length || 0,
+    aiMl: data.aiMl?.length || 0,
+    observability: data.observability?.length || 0,
+    integration: data.integration?.length || 0,
+    security: data.security?.length || 0,
+    analytics: data.analytics?.length || 0,
+    developer: data.developer?.length || 0,
+    media: data.media?.length || 0,
+    vmware: data.vmware?.length || 0,
+    edge: data.edge?.length || 0,
+    governance: data.governance?.length || 0,
+    multicloud: data.multicloud?.pricing?.length || 0,
+  };
 }
