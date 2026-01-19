@@ -370,6 +370,42 @@ export function getGovernancePricing(type) {
     return pricing;
 }
 /**
+ * Get Exadata pricing data
+ */
+export function getExadataPricing(type) {
+    const data = getPricingData();
+    let pricing = data.exadata || [];
+    if (type) {
+        pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+    }
+    return pricing;
+}
+/**
+ * Get Cache (Redis) pricing data
+ */
+export function getCachePricing() {
+    const data = getPricingData();
+    return data.cache || [];
+}
+/**
+ * Get Disaster Recovery pricing data
+ */
+export function getDisasterRecoveryPricing() {
+    const data = getPricingData();
+    return data.disasterRecovery || [];
+}
+/**
+ * Get Additional Services pricing data
+ */
+export function getAdditionalServicesPricing(type) {
+    const data = getPricingData();
+    let pricing = data.additionalServices || [];
+    if (type) {
+        pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+    }
+    return pricing;
+}
+/**
  * Get all service categories with counts
  */
 export function getServiceCategoryCounts() {
@@ -391,6 +427,10 @@ export function getServiceCategoryCounts() {
         edge: data.edge?.length || 0,
         governance: data.governance?.length || 0,
         multicloud: data.multicloud?.pricing?.length || 0,
+        exadata: data.exadata?.length || 0,
+        cache: data.cache?.length || 0,
+        disasterRecovery: data.disasterRecovery?.length || 0,
+        additionalServices: data.additionalServices?.length || 0,
     };
 }
 //# sourceMappingURL=fetcher.js.map

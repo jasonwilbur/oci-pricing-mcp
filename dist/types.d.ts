@@ -232,6 +232,57 @@ export interface GovernancePricing {
     partNumber?: string;
     notes?: string;
 }
+export type ExadataServiceType = 'exascale-ecpu' | 'exascale-ocpu' | 'exascale-storage' | 'exascale-infrastructure' | 'dedicated-ecpu' | 'dedicated-ocpu';
+export interface ExadataPricing {
+    service: 'exadata';
+    type: ExadataServiceType;
+    name: string;
+    description: string;
+    unit: string;
+    pricePerUnit: number;
+    licenseIncluded?: boolean;
+    byol?: boolean;
+    currency: 'USD';
+    partNumber?: string;
+    notes?: string;
+}
+export interface CachePricing {
+    service: 'cache';
+    type: 'redis';
+    name: string;
+    description: string;
+    memoryTier: 'low' | 'high';
+    unit: string;
+    pricePerUnit: number;
+    currency: 'USD';
+    partNumber?: string;
+    notes?: string;
+}
+export interface DisasterRecoveryPricing {
+    service: 'disaster-recovery';
+    type: 'full-stack-dr';
+    name: string;
+    description: string;
+    unit: string;
+    pricePerUnit: number;
+    currency: 'USD';
+    partNumber?: string;
+    notes?: string;
+}
+export type AdditionalServiceType = 'opensearch' | 'secure-desktops' | 'blockchain' | 'timesten' | 'batch' | 'recovery-service' | 'zfs-storage' | 'lustre-storage' | 'digital-assistant';
+export interface AdditionalServicePricing {
+    service: 'additional';
+    type: AdditionalServiceType;
+    name: string;
+    description: string;
+    unit: string;
+    pricePerUnit: number;
+    licenseIncluded?: boolean;
+    byol?: boolean;
+    currency: 'USD';
+    partNumber?: string;
+    notes?: string;
+}
 export interface CostEstimateInput {
     compute?: {
         shape: string;
@@ -331,6 +382,10 @@ export interface OCIPricingData {
     vmware?: VMwarePricing[];
     edge?: EdgePricing[];
     governance?: GovernancePricing[];
+    exadata?: ExadataPricing[];
+    cache?: CachePricing[];
+    disasterRecovery?: DisasterRecoveryPricing[];
+    additionalServices?: AdditionalServicePricing[];
     products: APIProduct[];
     categories: string[];
     regions: RegionInfo[];

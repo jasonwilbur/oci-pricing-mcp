@@ -9214,5 +9214,419 @@
       "currency": "USD",
       "partNumber": "B97181"
     }
+  ],
+  "exadata": [
+    {
+      "service": "exadata",
+      "type": "exascale-ecpu",
+      "name": "Oracle Exadata Exascale Database ECPU",
+      "description": "Exascale database compute - License Included",
+      "unit": "ECPU Per Hour",
+      "pricePerUnit": 0.336,
+      "licenseIncluded": true,
+      "currency": "USD",
+      "partNumber": "B109356"
+    },
+    {
+      "service": "exadata",
+      "type": "exascale-ecpu",
+      "name": "Oracle Exadata Exascale Database ECPU - BYOL",
+      "description": "Exascale database compute - Bring Your Own License",
+      "unit": "ECPU Per Hour",
+      "pricePerUnit": 0.0807,
+      "byol": true,
+      "currency": "USD",
+      "partNumber": "B109357"
+    },
+    {
+      "service": "exadata",
+      "type": "dedicated-ecpu",
+      "name": "Exadata Database ECPU - Dedicated Infrastructure - BYOL",
+      "description": "Dedicated Exadata infrastructure compute - BYOL",
+      "unit": "ECPU Per Hour",
+      "pricePerUnit": 0.0807,
+      "byol": true,
+      "currency": "USD",
+      "partNumber": "B110632"
+    },
+    {
+      "service": "exadata",
+      "type": "exascale-ecpu",
+      "name": "Oracle Globally Distributed Exadata Exascale Database ECPU",
+      "description": "Globally distributed Exascale - License Included",
+      "unit": "ECPU Per Hour",
+      "pricePerUnit": 0.3864,
+      "licenseIncluded": true,
+      "currency": "USD",
+      "partNumber": "B110989"
+    },
+    {
+      "service": "exadata",
+      "type": "exascale-ecpu",
+      "name": "Oracle Globally Distributed Exadata Exascale Database ECPU - BYOL",
+      "description": "Globally distributed Exascale - BYOL",
+      "unit": "ECPU Per Hour",
+      "pricePerUnit": 0.0928,
+      "byol": true,
+      "currency": "USD",
+      "partNumber": "B110990"
+    },
+    {
+      "service": "exadata",
+      "type": "dedicated-ecpu",
+      "name": "Oracle Exadata Database on Dedicated Infrastructure - ECPU - Developer",
+      "description": "Developer tier - free for development/testing",
+      "unit": "ECPU Per Hour",
+      "pricePerUnit": 0,
+      "currency": "USD",
+      "partNumber": "B111564",
+      "notes": "Free developer tier for Exadata"
+    },
+    {
+      "service": "exadata",
+      "type": "dedicated-ocpu",
+      "name": "Oracle Exadata Database on Dedicated Infrastructure - Developer",
+      "description": "Developer tier (OCPU) - free for development/testing",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0,
+      "currency": "USD",
+      "partNumber": "B109633",
+      "notes": "Free developer tier for Exadata"
+    },
+    {
+      "service": "exadata",
+      "type": "dedicated-ocpu",
+      "name": "Exadata Database OCPU - Dedicated Infrastructure",
+      "description": "Dedicated Exadata infrastructure compute - License Included",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 1.3441,
+      "licenseIncluded": true,
+      "currency": "USD",
+      "partNumber": "B88592"
+    },
+    {
+      "service": "exadata",
+      "type": "dedicated-ocpu",
+      "name": "Exadata Database OCPU - Dedicated Infrastructure - BYOL",
+      "description": "Dedicated Exadata infrastructure compute - BYOL",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0.3226,
+      "byol": true,
+      "currency": "USD",
+      "partNumber": "B88847"
+    },
+    {
+      "service": "exadata",
+      "type": "exascale-storage",
+      "name": "Oracle Exadata Exascale VM Filesystem Storage",
+      "description": "Exascale VM filesystem storage",
+      "unit": "GB Storage Per Month",
+      "pricePerUnit": 0.0425,
+      "currency": "USD",
+      "partNumber": "B107951"
+    },
+    {
+      "service": "exadata",
+      "type": "exascale-storage",
+      "name": "Oracle Exadata Exascale Smart Database Storage",
+      "description": "Exascale smart database storage with compression",
+      "unit": "GB Storage Per Month",
+      "pricePerUnit": 0.1156,
+      "currency": "USD",
+      "partNumber": "B107952"
+    },
+    {
+      "service": "exadata",
+      "type": "exascale-infrastructure",
+      "name": "Oracle Exadata Exascale RDMA Compute Infrastructure",
+      "description": "Exascale RDMA compute infrastructure",
+      "unit": "ECPU Per Hour",
+      "pricePerUnit": 0.025,
+      "currency": "USD",
+      "partNumber": "B109355"
+    },
+    {
+      "service": "exadata",
+      "type": "exascale-infrastructure",
+      "name": "Oracle Exadata Exascale Additional Flash Cache",
+      "description": "Additional flash cache for Exascale",
+      "unit": "GB Per Hour",
+      "pricePerUnit": 0.0005,
+      "currency": "USD",
+      "partNumber": "B109375"
+    }
+  ],
+  "cache": [
+    {
+      "service": "cache",
+      "type": "redis",
+      "name": "OCI Cache with Redis - Low Memory",
+      "description": "Redis cache for nodes up to 10 GB memory",
+      "memoryTier": "low",
+      "unit": "GB Memory Per Hour",
+      "pricePerUnit": 0.0194,
+      "currency": "USD",
+      "partNumber": "B98217",
+      "notes": "For nodes with up to 10 GB memory"
+    },
+    {
+      "service": "cache",
+      "type": "redis",
+      "name": "OCI Cache with Redis - High Memory",
+      "description": "Redis cache for nodes over 10 GB memory",
+      "memoryTier": "high",
+      "unit": "GB Memory Per Hour",
+      "pricePerUnit": 0.0136,
+      "currency": "USD",
+      "partNumber": "B99591",
+      "notes": "Better rate for nodes over 10 GB memory"
+    }
+  ],
+  "disasterRecovery": [
+    {
+      "service": "disaster-recovery",
+      "type": "full-stack-dr",
+      "name": "OCI Full Stack Disaster Recovery Service (ECPU)",
+      "description": "Full Stack DR for ECPU-based workloads",
+      "unit": "ECPU Per Hour",
+      "pricePerUnit": 0.0032,
+      "currency": "USD",
+      "partNumber": "B110274"
+    },
+    {
+      "service": "disaster-recovery",
+      "type": "full-stack-dr",
+      "name": "OCI Full Stack Disaster Recovery Service (OCPU)",
+      "description": "Full Stack DR for OCPU-based workloads",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0.0128,
+      "currency": "USD",
+      "partNumber": "B95485"
+    },
+    {
+      "service": "disaster-recovery",
+      "type": "full-stack-dr",
+      "name": "OCI Full Stack Disaster Recovery Service for Oracle Integration Cloud",
+      "description": "Full Stack DR for OIC workloads",
+      "unit": "5K Messages Per Hour",
+      "pricePerUnit": 0.192,
+      "currency": "USD",
+      "partNumber": "B112110"
+    }
+  ],
+  "additionalServices": [
+    {
+      "service": "additional",
+      "type": "opensearch",
+      "name": "OCI Search with OpenSearch HA",
+      "description": "High availability OpenSearch cluster",
+      "unit": "Node Per Hour",
+      "pricePerUnit": 0.25,
+      "currency": "USD",
+      "partNumber": "B93709"
+    },
+    {
+      "service": "additional",
+      "type": "secure-desktops",
+      "name": "Secure Desktop",
+      "description": "Virtual desktop infrastructure",
+      "unit": "Desktop Per Month",
+      "pricePerUnit": 20,
+      "currency": "USD",
+      "partNumber": "B95518"
+    },
+    {
+      "service": "additional",
+      "type": "zfs-storage",
+      "name": "Oracle ZFS Storage - High Availability",
+      "description": "Enterprise ZFS storage appliance",
+      "unit": "Instance Per Hour",
+      "pricePerUnit": 1.85,
+      "currency": "USD",
+      "partNumber": "B95410"
+    },
+    {
+      "service": "additional",
+      "type": "lustre-storage",
+      "name": "OCI File Storage with Lustre Service - Storage",
+      "description": "High-performance Lustre parallel filesystem storage",
+      "unit": "GB Storage Per Month",
+      "pricePerUnit": 0.086,
+      "currency": "USD",
+      "partNumber": "B111091"
+    },
+    {
+      "service": "additional",
+      "type": "lustre-storage",
+      "name": "OCI File Storage with Lustre Service - Performance",
+      "description": "Lustre performance units",
+      "unit": "Performance Units Per GB Per Month",
+      "pricePerUnit": 0.0005,
+      "currency": "USD",
+      "partNumber": "B111092"
+    },
+    {
+      "service": "additional",
+      "type": "batch",
+      "name": "OCI Batch",
+      "description": "Managed batch processing service",
+      "unit": "Each",
+      "pricePerUnit": 0,
+      "currency": "USD",
+      "partNumber": "B112107",
+      "notes": "Free service - pay only for underlying compute"
+    },
+    {
+      "service": "additional",
+      "type": "blockchain",
+      "name": "Blockchain Platform - Standard",
+      "description": "Standard blockchain platform",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0.215,
+      "currency": "USD",
+      "partNumber": "B92302"
+    },
+    {
+      "service": "additional",
+      "type": "blockchain",
+      "name": "Blockchain Platform - Enterprise",
+      "description": "Enterprise blockchain platform",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0.4301,
+      "licenseIncluded": true,
+      "currency": "USD",
+      "partNumber": "B92303"
+    },
+    {
+      "service": "additional",
+      "type": "blockchain",
+      "name": "Blockchain Platform - Enterprise - BYOL",
+      "description": "Enterprise blockchain platform - BYOL",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0.3226,
+      "byol": true,
+      "currency": "USD",
+      "partNumber": "B92305"
+    },
+    {
+      "service": "additional",
+      "type": "blockchain",
+      "name": "Blockchain Platform - Storage",
+      "description": "Blockchain platform storage",
+      "unit": "TB Storage Per Month",
+      "pricePerUnit": 70.4,
+      "currency": "USD",
+      "partNumber": "B92304"
+    },
+    {
+      "service": "additional",
+      "type": "blockchain",
+      "name": "OCI Blockchain Platform Enterprise Edition",
+      "description": "Latest enterprise blockchain edition",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0.4301,
+      "currency": "USD",
+      "partNumber": "B109545"
+    },
+    {
+      "service": "additional",
+      "type": "blockchain",
+      "name": "OCI Blockchain Platform - Digital Assets",
+      "description": "Blockchain for digital assets/NFTs",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 1.0161,
+      "currency": "USD",
+      "partNumber": "B109565"
+    },
+    {
+      "service": "additional",
+      "type": "timesten",
+      "name": "Oracle TimesTen In-Memory System of Record for OKE - x86",
+      "description": "TimesTen in-memory database for Kubernetes (x86)",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0.4301,
+      "currency": "USD",
+      "partNumber": "B111534"
+    },
+    {
+      "service": "additional",
+      "type": "timesten",
+      "name": "Oracle TimesTen In-Memory System of Record for OKE - ARM",
+      "description": "TimesTen in-memory database for Kubernetes (ARM)",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0.2151,
+      "currency": "USD",
+      "partNumber": "B111535"
+    },
+    {
+      "service": "additional",
+      "type": "timesten",
+      "name": "Oracle TimesTen In-Memory Application Cache for OKE - x86",
+      "description": "TimesTen application cache for Kubernetes (x86)",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0.2151,
+      "currency": "USD",
+      "partNumber": "B111536"
+    },
+    {
+      "service": "additional",
+      "type": "timesten",
+      "name": "Oracle TimesTen In-Memory Application Cache for OKE - ARM",
+      "description": "TimesTen application cache for Kubernetes (ARM)",
+      "unit": "OCPU Per Hour",
+      "pricePerUnit": 0.1076,
+      "currency": "USD",
+      "partNumber": "B111537"
+    },
+    {
+      "service": "additional",
+      "type": "recovery-service",
+      "name": "Oracle Database Autonomous Recovery Service",
+      "description": "Automated database backup and recovery",
+      "unit": "Virtualized GB Per Month",
+      "pricePerUnit": 0.0306,
+      "currency": "USD",
+      "partNumber": "B95240"
+    },
+    {
+      "service": "additional",
+      "type": "recovery-service",
+      "name": "Oracle Database Zero Data Loss Autonomous Recovery Service",
+      "description": "Zero data loss backup and recovery",
+      "unit": "Virtualized GB Per Month",
+      "pricePerUnit": 0.04,
+      "currency": "USD",
+      "partNumber": "B95241"
+    },
+    {
+      "service": "additional",
+      "type": "recovery-service",
+      "name": "Oracle Database Autonomous Recovery Service - Cloud Protect",
+      "description": "Cloud Protect backup service",
+      "unit": "Virtualized GB Per Month",
+      "pricePerUnit": 0.0306,
+      "currency": "USD",
+      "partNumber": "B110314"
+    },
+    {
+      "service": "additional",
+      "type": "recovery-service",
+      "name": "Oracle Database Zero Data Loss Autonomous Recovery Service - Cloud Protect",
+      "description": "Zero data loss Cloud Protect",
+      "unit": "Virtualized GB Per Month",
+      "pricePerUnit": 0.04,
+      "currency": "USD",
+      "partNumber": "B110315"
+    },
+    {
+      "service": "additional",
+      "type": "digital-assistant",
+      "name": "Oracle Digital Assistant Cloud Service",
+      "description": "AI-powered chatbot and digital assistant",
+      "unit": "Requests Per Hour",
+      "pricePerUnit": 0.0232,
+      "currency": "USD",
+      "partNumber": "B90260"
+    }
   ]
 }

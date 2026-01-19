@@ -2,7 +2,7 @@
  * OCI Services Tools
  * Tools for AI/ML, Observability, Integration, Security, Analytics, Developer, Media, VMware, Edge, and Governance services
  */
-import { getAIMLPricing, getObservabilityPricing, getIntegrationPricing, getSecurityPricing, getAnalyticsPricing, getDeveloperPricing, getMediaPricing, getVMwarePricing, getEdgePricing, getGovernancePricing, getServiceCategoryCounts, getLastUpdated } from '../data/fetcher.js';
+import { getAIMLPricing, getObservabilityPricing, getIntegrationPricing, getSecurityPricing, getAnalyticsPricing, getDeveloperPricing, getMediaPricing, getVMwarePricing, getEdgePricing, getGovernancePricing, getExadataPricing, getCachePricing, getDisasterRecoveryPricing, getAdditionalServicesPricing, getServiceCategoryCounts, getLastUpdated } from '../data/fetcher.js';
 export function listAIMLServices(params = {}) {
     let pricing = getAIMLPricing(params.type);
     // Filter by model if specified
@@ -256,6 +256,106 @@ export function listGovernanceServices(params = {}) {
         ]
     };
 }
+export function listExadataServices(params = {}) {
+    const pricing = getExadataPricing(params.type);
+    // Group by type
+    const byType = {};
+    pricing.forEach(p => {
+        if (!byType[p.type])
+            byType[p.type] = [];
+        byType[p.type].push(p);
+    });
+    return {
+        services: pricing,
+        totalCount: pricing.length,
+        byType: Object.entries(byType).map(([type, items]) => ({
+            type,
+            count: items.length,
+            items
+        })),
+        lastUpdated: getLastUpdated(),
+        availableTypes: [...new Set(pricing.map(p => p.type))],
+        notes: [
+            'Exadata provides the highest performance Oracle Database platform',
+            'Exascale is the latest generation with elastic scaling',
+            'BYOL pricing available for existing Oracle license holders',
+            'Developer tier is free for development and testing'
+        ]
+    };
+}
+// ============================================
+// Cache (Redis) Tools
+// ============================================
+export function listCacheServices() {
+    const pricing = getCachePricing();
+    return {
+        services: pricing,
+        totalCount: pricing.length,
+        lastUpdated: getLastUpdated(),
+        pricingTiers: [
+            { tier: 'low', description: 'Up to 10 GB per node', pricePerGBHour: 0.0194 },
+            { tier: 'high', description: 'Over 10 GB per node', pricePerGBHour: 0.0136 }
+        ],
+        notes: [
+            'OCI Cache with Redis is a managed Redis-compatible caching service',
+            'High memory tier offers better per-GB pricing for larger caches',
+            'Fully managed with automatic failover and patching'
+        ]
+    };
+}
+// ============================================
+// Disaster Recovery Tools
+// ============================================
+export function listDisasterRecoveryServices() {
+    const pricing = getDisasterRecoveryPricing();
+    return {
+        services: pricing,
+        totalCount: pricing.length,
+        lastUpdated: getLastUpdated(),
+        notes: [
+            'Full Stack DR automates disaster recovery for entire application stacks',
+            'Supports Oracle databases, middleware, and applications',
+            'Pay only for DR protection, not standby compute resources'
+        ]
+    };
+}
+export function listAdditionalServices(params = {}) {
+    const pricing = getAdditionalServicesPricing(params.type);
+    // Group by type
+    const byType = {};
+    pricing.forEach(p => {
+        if (!byType[p.type])
+            byType[p.type] = [];
+        byType[p.type].push(p);
+    });
+    return {
+        services: pricing,
+        totalCount: pricing.length,
+        byType: Object.entries(byType).map(([type, items]) => ({
+            type,
+            count: items.length,
+            items
+        })),
+        lastUpdated: getLastUpdated(),
+        availableTypes: [...new Set(pricing.map(p => p.type))],
+        serviceDescriptions: {
+            opensearch: 'Managed OpenSearch for log analytics and search',
+            'secure-desktops': 'Virtual desktop infrastructure (VDI)',
+            blockchain: 'Enterprise blockchain platform',
+            timesten: 'In-memory database for Kubernetes',
+            batch: 'Managed batch processing (free service)',
+            'recovery-service': 'Automated database backup and recovery',
+            'zfs-storage': 'Enterprise ZFS storage appliance',
+            'lustre-storage': 'High-performance parallel filesystem',
+            'digital-assistant': 'AI-powered chatbot service'
+        },
+        notes: [
+            'OCI Batch is free - you only pay for underlying compute',
+            'TimesTen provides microsecond-latency in-memory processing',
+            'Lustre storage is ideal for HPC and AI/ML workloads'
+        ]
+    };
+}
 // ============================================
 // Summary Tool
 // ============================================
@@ -269,8 +369,10 @@ export function getServicesSummary() {
         coverage: {
             core: ['compute', 'storage', 'database', 'networking', 'kubernetes'],
             aiMl: ['generative-ai', 'vision', 'speech', 'language', 'document-understanding'],
-            operations: ['observability', 'security', 'governance'],
+            operations: ['observability', 'security', 'governance', 'disaster-recovery'],
             platform: ['integration', 'analytics', 'developer', 'media', 'vmware', 'edge'],
+            enterprise: ['exadata', 'blockchain', 'timesten'],
+            infrastructure: ['cache', 'zfs-storage', 'lustre-storage', 'opensearch', 'secure-desktops'],
             multicloud: ['database@azure', 'database@aws', 'database@gcp']
         },
         notes: [

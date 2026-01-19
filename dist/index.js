@@ -29,7 +29,7 @@ import { listDatabaseOptions, calculateDatabaseCost, compareDatabaseOptions } fr
 import { listNetworkingOptions, calculateNetworkingCost, compareDataEgress } from './tools/networking.js';
 import { listKubernetesOptions, calculateKubernetesCost, compareKubernetesProviders } from './tools/kubernetes.js';
 import { listMulticloudDatabases, getMulticloudAvailabilityMatrix, calculateMulticloudDatabaseCost, compareMulticloudVsOCI } from './tools/multicloud.js';
-import { listAIMLServices, listObservabilityServices, listIntegrationServices, listSecurityServices, listAnalyticsServices, listDeveloperServices, listMediaServices, listVMwareServices, listEdgeServices, listGovernanceServices, getServicesSummary } from './tools/services.js';
+import { listAIMLServices, listObservabilityServices, listIntegrationServices, listSecurityServices, listAnalyticsServices, listDeveloperServices, listMediaServices, listVMwareServices, listEdgeServices, listGovernanceServices, listExadataServices, listCacheServices, listDisasterRecoveryServices, listAdditionalServices, getServicesSummary } from './tools/services.js';
 import { getLastUpdated, getFreeTier, fetchRealTimePricing, getRealTimeCategories } from './data/fetcher.js';
 // Create server instance
 const server = new Server({
@@ -673,6 +673,54 @@ const TOOLS = [
             },
         },
     },
+    // Exadata
+    {
+        name: 'list_exadata_services',
+        description: 'List Oracle Exadata Cloud pricing including Exascale, dedicated infrastructure, ECPUs, OCPUs, and storage.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                type: {
+                    type: 'string',
+                    enum: ['exascale-ecpu', 'exascale-ocpu', 'exascale-storage', 'exascale-infrastructure', 'dedicated-ecpu', 'dedicated-ocpu'],
+                    description: 'Filter by Exadata service type',
+                },
+            },
+        },
+    },
+    // Cache (Redis)
+    {
+        name: 'list_cache_services',
+        description: 'List OCI Cache with Redis pricing. Shows managed Redis cache options with low and high memory tiers.',
+        inputSchema: {
+            type: 'object',
+            properties: {},
+        },
+    },
+    // Disaster Recovery
+    {
+        name: 'list_disaster_recovery_services',
+        description: 'List OCI Full Stack Disaster Recovery pricing for automating DR across application stacks.',
+        inputSchema: {
+            type: 'object',
+            properties: {},
+        },
+    },
+    // Additional Services
+    {
+        name: 'list_additional_services',
+        description: 'List additional OCI services including OpenSearch, Secure Desktops, Blockchain, TimesTen, Batch, Recovery Service, ZFS Storage, Lustre, and Digital Assistant.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                type: {
+                    type: 'string',
+                    enum: ['opensearch', 'secure-desktops', 'blockchain', 'timesten', 'batch', 'recovery-service', 'zfs-storage', 'lustre-storage', 'digital-assistant'],
+                    description: 'Filter by service type',
+                },
+            },
+        },
+    },
     // Services Summary
     {
         name: 'get_services_summary',
@@ -835,6 +883,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                 break;
             case 'list_governance_services':
                 result = listGovernanceServices(typedArgs);
+                break;
+            case 'list_exadata_services':
+                result = listExadataServices(typedArgs);
+                break;
+            case 'list_cache_services':
+                result = listCacheServices();
+                break;
+            case 'list_disaster_recovery_services':
+                result = listDisasterRecoveryServices();
+                break;
+            case 'list_additional_services':
+                result = listAdditionalServices(typedArgs);
                 break;
             case 'get_services_summary':
                 result = getServicesSummary();

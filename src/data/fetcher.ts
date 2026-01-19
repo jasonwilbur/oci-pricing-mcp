@@ -22,7 +22,11 @@ import type {
   MediaPricing,
   VMwarePricing,
   EdgePricing,
-  GovernancePricing
+  GovernancePricing,
+  ExadataPricing,
+  CachePricing,
+  DisasterRecoveryPricing,
+  AdditionalServicePricing
 } from '../types.js';
 import { pricingCache, CACHE_KEYS } from './cache.js';
 
@@ -488,6 +492,46 @@ export function getGovernancePricing(type?: string): GovernancePricing[] {
 }
 
 /**
+ * Get Exadata pricing data
+ */
+export function getExadataPricing(type?: string): ExadataPricing[] {
+  const data = getPricingData();
+  let pricing = data.exadata || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
+ * Get Cache (Redis) pricing data
+ */
+export function getCachePricing(): CachePricing[] {
+  const data = getPricingData();
+  return data.cache || [];
+}
+
+/**
+ * Get Disaster Recovery pricing data
+ */
+export function getDisasterRecoveryPricing(): DisasterRecoveryPricing[] {
+  const data = getPricingData();
+  return data.disasterRecovery || [];
+}
+
+/**
+ * Get Additional Services pricing data
+ */
+export function getAdditionalServicesPricing(type?: string): AdditionalServicePricing[] {
+  const data = getPricingData();
+  let pricing = data.additionalServices || [];
+  if (type) {
+    pricing = pricing.filter(p => p.type === type || p.name.toLowerCase().includes(type.toLowerCase()));
+  }
+  return pricing;
+}
+
+/**
  * Get all service categories with counts
  */
 export function getServiceCategoryCounts(): Record<string, number> {
@@ -509,5 +553,9 @@ export function getServiceCategoryCounts(): Record<string, number> {
     edge: data.edge?.length || 0,
     governance: data.governance?.length || 0,
     multicloud: data.multicloud?.pricing?.length || 0,
+    exadata: data.exadata?.length || 0,
+    cache: data.cache?.length || 0,
+    disasterRecovery: data.disasterRecovery?.length || 0,
+    additionalServices: data.additionalServices?.length || 0,
   };
 }

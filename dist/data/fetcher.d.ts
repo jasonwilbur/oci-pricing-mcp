@@ -2,7 +2,7 @@
  * OCI Pricing Data Fetcher
  * Loads pricing data from bundled JSON or real-time Oracle API
  */
-import type { OCIPricingData, MulticloudData, MulticloudProvider, MulticloudDatabaseType, MulticloudDatabaseAvailability, MulticloudDatabasePricing, AIMLPricing, ObservabilityPricing, IntegrationPricing, SecurityPricing, AnalyticsPricing, DeveloperPricing, MediaPricing, VMwarePricing, EdgePricing, GovernancePricing } from '../types.js';
+import type { OCIPricingData, MulticloudData, MulticloudProvider, MulticloudDatabaseType, MulticloudDatabaseAvailability, MulticloudDatabasePricing, AIMLPricing, ObservabilityPricing, IntegrationPricing, SecurityPricing, AnalyticsPricing, DeveloperPricing, MediaPricing, VMwarePricing, EdgePricing, GovernancePricing, ExadataPricing, CachePricing, DisasterRecoveryPricing, AdditionalServicePricing } from '../types.js';
 export interface RealTimePriceItem {
     partNumber: string;
     displayName: string;
@@ -148,6 +148,22 @@ export declare function getEdgePricing(type?: string): EdgePricing[];
  * Get Governance pricing data
  */
 export declare function getGovernancePricing(type?: string): GovernancePricing[];
+/**
+ * Get Exadata pricing data
+ */
+export declare function getExadataPricing(type?: string): ExadataPricing[];
+/**
+ * Get Cache (Redis) pricing data
+ */
+export declare function getCachePricing(): CachePricing[];
+/**
+ * Get Disaster Recovery pricing data
+ */
+export declare function getDisasterRecoveryPricing(): DisasterRecoveryPricing[];
+/**
+ * Get Additional Services pricing data
+ */
+export declare function getAdditionalServicesPricing(type?: string): AdditionalServicePricing[];
 /**
  * Get all service categories with counts
  */

@@ -145,6 +145,64 @@ export declare function listGovernanceServices(params?: ListGovernanceParams): {
     availableTypes: import("../types.js").GovernanceServiceType[];
     notes: string[];
 };
+export interface ListExadataParams {
+    type?: string;
+}
+export declare function listExadataServices(params?: ListExadataParams): {
+    services: import("../types.js").ExadataPricing[];
+    totalCount: number;
+    byType: {
+        type: string;
+        count: number;
+        items: import("../types.js").ExadataPricing[];
+    }[];
+    lastUpdated: string;
+    availableTypes: import("../types.js").ExadataServiceType[];
+    notes: string[];
+};
+export declare function listCacheServices(): {
+    services: import("../types.js").CachePricing[];
+    totalCount: number;
+    lastUpdated: string;
+    pricingTiers: {
+        tier: string;
+        description: string;
+        pricePerGBHour: number;
+    }[];
+    notes: string[];
+};
+export declare function listDisasterRecoveryServices(): {
+    services: import("../types.js").DisasterRecoveryPricing[];
+    totalCount: number;
+    lastUpdated: string;
+    notes: string[];
+};
+export interface ListAdditionalServicesParams {
+    type?: string;
+}
+export declare function listAdditionalServices(params?: ListAdditionalServicesParams): {
+    services: import("../types.js").AdditionalServicePricing[];
+    totalCount: number;
+    byType: {
+        type: string;
+        count: number;
+        items: import("../types.js").AdditionalServicePricing[];
+    }[];
+    lastUpdated: string;
+    availableTypes: import("../types.js").AdditionalServiceType[];
+    serviceDescriptions: {
+        opensearch: string;
+        'secure-desktops': string;
+        blockchain: string;
+        timesten: string;
+        batch: string;
+        'recovery-service': string;
+        'zfs-storage': string;
+        'lustre-storage': string;
+        'digital-assistant': string;
+    };
+    notes: string[];
+};
 export declare function getServicesSummary(): {
     categories: Record<string, number>;
     totalPricingItems: number;
@@ -154,6 +212,8 @@ export declare function getServicesSummary(): {
         aiMl: string[];
         operations: string[];
         platform: string[];
+        enterprise: string[];
+        infrastructure: string[];
         multicloud: string[];
     };
     notes: string[];

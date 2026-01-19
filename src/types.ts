@@ -457,6 +457,84 @@ export interface GovernancePricing {
   notes?: string;
 }
 
+// Exadata Service Types
+export type ExadataServiceType =
+  | 'exascale-ecpu'
+  | 'exascale-ocpu'
+  | 'exascale-storage'
+  | 'exascale-infrastructure'
+  | 'dedicated-ecpu'
+  | 'dedicated-ocpu';
+
+// Exadata Pricing
+export interface ExadataPricing {
+  service: 'exadata';
+  type: ExadataServiceType;
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  licenseIncluded?: boolean;
+  byol?: boolean;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Cache (Redis) Pricing
+export interface CachePricing {
+  service: 'cache';
+  type: 'redis';
+  name: string;
+  description: string;
+  memoryTier: 'low' | 'high';
+  unit: string;
+  pricePerUnit: number;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Disaster Recovery Pricing
+export interface DisasterRecoveryPricing {
+  service: 'disaster-recovery';
+  type: 'full-stack-dr';
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
+// Additional Services Types
+export type AdditionalServiceType =
+  | 'opensearch'
+  | 'secure-desktops'
+  | 'blockchain'
+  | 'timesten'
+  | 'batch'
+  | 'recovery-service'
+  | 'zfs-storage'
+  | 'lustre-storage'
+  | 'digital-assistant';
+
+// Additional Services Pricing
+export interface AdditionalServicePricing {
+  service: 'additional';
+  type: AdditionalServiceType;
+  name: string;
+  description: string;
+  unit: string;
+  pricePerUnit: number;
+  licenseIncluded?: boolean;
+  byol?: boolean;
+  currency: 'USD';
+  partNumber?: string;
+  notes?: string;
+}
+
 // Monthly cost estimate input
 export interface CostEstimateInput {
   compute?: {
@@ -572,6 +650,11 @@ export interface OCIPricingData {
   vmware?: VMwarePricing[];
   edge?: EdgePricing[];
   governance?: GovernancePricing[];
+  // Additional services (v1.3.2)
+  exadata?: ExadataPricing[];
+  cache?: CachePricing[];
+  disasterRecovery?: DisasterRecoveryPricing[];
+  additionalServices?: AdditionalServicePricing[];
   // Raw data
   products: APIProduct[];
   categories: string[];
