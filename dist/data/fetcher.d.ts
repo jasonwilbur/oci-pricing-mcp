@@ -10,11 +10,20 @@ export interface RealTimePriceItem {
     serviceCategory: string;
     unitPrice: number;
     currency: string;
+    isBYOL: boolean;
+    licenseModel: 'standard' | 'byol';
 }
 export interface RealTimePricingResponse {
     lastUpdated: string;
     totalProducts: number;
     items: RealTimePriceItem[];
+    summary: {
+        totalSKUs: number;
+        standardPricing: number;
+        byolPricing: number;
+        uniqueCategories: number;
+    };
+    apiNotes: string[];
 }
 /**
  * Get OCI pricing data

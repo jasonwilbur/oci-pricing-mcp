@@ -175,6 +175,9 @@ export async function fetchRealTimePricing(options) {
                     break;
                 }
             }
+            // Detect BYOL (Bring Your Own License) from display name
+            const isBYOL = item.displayName.toUpperCase().includes('BYOL') ||
+                item.displayName.toUpperCase().includes('BRING YOUR OWN LICENSE');
             return {
                 partNumber: item.partNumber,
                 displayName: item.displayName,
@@ -182,12 +185,33 @@ export async function fetchRealTimePricing(options) {
                 serviceCategory: item.serviceCategory,
                 unitPrice,
                 currency,
+                isBYOL,
+                licenseModel: isBYOL ? 'byol' : 'standard',
             };
         });
+        // Generate summary statistics
+        const byolCount = items.filter(item => item.isBYOL).length;
+        const standardCount = items.length - byolCount;
+        const uniqueCategories = new Set(items.map(item => item.serviceCategory)).size;
         const result = {
             lastUpdated: data.lastUpdated,
             totalProducts: items.length,
             items,
+            summary: {
+                totalSKUs: items.length,
+                standardPricing: standardCount,
+                byolPricing: byolCount,
+                uniqueCategories,
+            },
+            apiNotes: [
+                'Public API returns PAY_AS_YOU_GO pricing only',
+                'BYOL (Bring Your Own License) variants are included as separate SKUs',
+                'Reserved/Committed pricing (1-year, 3-year) NOT available via public API',
+                'Universal Credits and Monthly Flex pricing NOT included',
+                'Government cloud and private region pricing may differ',
+                'OCI maintains consistent pricing across all commercial regions',
+                'For reserved/committed pricing, contact Oracle sales or use Universal Credits calculator',
+            ],
         };
         // Cache for 5 minutes
         pricingCache.set(cacheKey, result, 5);
@@ -212,10 +236,20 @@ function filterRealTimeData(data, options) {
             item.partNumber.toLowerCase().includes(search) ||
             item.serviceCategory.toLowerCase().includes(search));
     }
+    // Recalculate summary for filtered data
+    const byolCount = items.filter(item => item.isBYOL).length;
+    const standardCount = items.length - byolCount;
+    const uniqueCategories = new Set(items.map(item => item.serviceCategory)).size;
     return {
         ...data,
         items,
         totalProducts: items.length,
+        summary: {
+            totalSKUs: items.length,
+            standardPricing: standardCount,
+            byolPricing: byolCount,
+            uniqueCategories,
+        },
     };
 }
 /**

@@ -414,7 +414,7 @@ const TOOLS = [
     // Real-time API tools
     {
         name: 'fetch_realtime_pricing',
-        description: 'Fetch real-time pricing from Oracle\'s public API. Returns 600+ products with current prices. No authentication required.',
+        description: 'Fetch real-time pricing from Oracle\'s public API. Returns 592 SKUs (562 standard + 30 BYOL) with PAY_AS_YOU_GO pricing. Automatically detects and flags BYOL (Bring Your Own License) variants. Includes summary statistics and API coverage notes. No authentication required.',
         inputSchema: {
             type: 'object',
             properties: {
