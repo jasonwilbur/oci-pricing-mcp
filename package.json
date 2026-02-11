@@ -7,7 +7,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "oci-pricing-mcp": "./dist/index.js"
+    "oci-pricing-mcp": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -33,7 +33,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jasonwilbur/oci-pricing-mcp"
+    "url": "git+https://github.com/jasonwilbur/oci-pricing-mcp.git"
   },
   "engines": {
     "node": ">=18.0.0"
