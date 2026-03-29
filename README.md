@@ -58,6 +58,10 @@ OCI includes 10 TB of free outbound data transfer monthly,
 making it significantly more cost-effective for data-heavy workloads.
 ```
 
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/jasonwilbur-oci-pricing-mcp).
+
 ## Installation
 
 ### Quick Install (Recommended)
