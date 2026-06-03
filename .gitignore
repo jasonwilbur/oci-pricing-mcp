@@ -12,3 +12,6 @@ coverage/
 .nyc_output/
 .mcpregistry_*
 mcp-publisher
+
+# Build output (rebuilt on publish via prepublishOnly)
+dist/

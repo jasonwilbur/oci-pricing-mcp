@@ -304,6 +304,7 @@ export function compareKubernetesProviders(
       'Prices are estimates; actual costs vary by region and instance type',
       'AWS EKS, GCP GKE Standard both charge $0.10/hour cluster fee',
       'Azure AKS has free control plane like OCI Basic',
+      'Competitor (AWS/Azure/GCP) compute rates and cluster fees are approximate, hardcoded as of 2026-06 — verify against provider pricing pages.',
     ],
   };
 }

@@ -5,6 +5,24 @@ All notable changes to the OCI Pricing MCP will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-06-03
+
+### Added
+- **`list_services_by_category`** — a single consolidated tool replacing the 18 near-identical `list_*_services` tools (which still work but are now marked deprecated). Easier for models to select correctly.
+- **MCP tool annotations** on all tools (`readOnlyHint`, `idempotentHint`, `openWorldHint` on the two live-API tools).
+- **Structured output** (`structuredContent`) returned alongside text for every tool.
+- **Test suite** (Vitest) covering networking/egress calculators and the consolidation, plus **GitHub Actions CI** (Node 20/22).
+- **Real pricing-data generator** (`npm run generate-data`) that fetches Oracle's live API, plus a **monthly data-refresh GitHub Action**. (The previous generator only re-read the existing JSON and never fetched.)
+
+### Changed
+- **Refreshed bundled pricing** from Oracle's live API: 602 → 643 products, 111 service categories, API snapshot dated 2026-06-02.
+- Server version is now read from `package.json` (previously hardcoded and stale at `1.0.0` in the handshake); `server.json` version corrected (was pinned to `1.2.2`, causing the MCP registry to ship a stale build).
+- Competitor (AWS/Azure/GCP) figures in the egress and Kubernetes comparisons are now clearly labeled as approximate, hardcoded as of 2026-06.
+- Minimum Node bumped to 20; `@modelcontextprotocol/sdk` bumped to ^1.18.
+
+### Fixed
+- **LICENSE** file replaced — it was MIT (`Copyright (c) 2025 MCP Contributors`) while every other file declared Apache-2.0 / Jason Wilbur. Now Apache-2.0 throughout.
+
 ## [1.3.4] - 2026-02-11
 
 ### Added

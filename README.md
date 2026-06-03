@@ -1,5 +1,11 @@
 # OCI Pricing MCP Server
 
+[![npm version](https://img.shields.io/npm/v/oci-pricing-mcp.svg)](https://www.npmjs.com/package/oci-pricing-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/oci-pricing-mcp.svg)](https://www.npmjs.com/package/oci-pricing-mcp)
+[![CI](https://github.com/jasonwilbur/oci-pricing-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/jasonwilbur/oci-pricing-mcp/actions/workflows/ci.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
+[![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue)](https://registry.modelcontextprotocol.io)
+
 A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that provides Oracle Cloud Infrastructure pricing data to AI assistants like Claude.
 
 > **Important Note:** This server provides pricing data from Oracle's public pricing API and bundled data. We cannot guarantee that AI assistants will always interpret pricing correctly or identify the absolute cheapest options. Always verify pricing on [Oracle's official price list](https://www.oracle.com/cloud/price-list/) before making decisions. All API calls are free of charge (no authentication required).
@@ -63,7 +69,22 @@ making it significantly more cost-effective for data-heavy workloads.
 ### Quick Install (Recommended)
 
 ```bash
-claude mcp add oci-pricing -- npx oci-pricing-mcp
+claude mcp add oci-pricing -- npx -y oci-pricing-mcp
+```
+
+### For Claude Desktop Users
+
+Add this to your `claude_desktop_config.json` (macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`, Windows: `%APPDATA%\Claude\claude_desktop_config.json`), then restart Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "oci-pricing": {
+      "command": "npx",
+      "args": ["-y", "oci-pricing-mcp"]
+    }
+  }
+}
 ```
 
 ### From Source
@@ -129,6 +150,15 @@ claude mcp add oci-pricing -- node /path/to/oci-pricing-mcp/dist/index.js
 | `calculate_kubernetes_cost` | Calculate cluster cost |
 | `compare_kubernetes_providers` | Compare OKE vs EKS/AKS/GKE |
 
+### Service Category Tools
+
+| Tool | Description |
+|------|-------------|
+| `list_services_by_category` | **Preferred.** List services in any category: `aiml`, `observability`, `integration`, `security`, `analytics`, `developer`, `media`, `vmware`, `edge`, `governance`, `exadata`, `cache`, `disaster-recovery`, `additional` |
+| `get_services_summary` | Summary of all service categories with counts |
+
+> The individual `list_*_services` tools (e.g. `list_aiml_services`, `list_security_services`) still work but are **deprecated** in favor of `list_services_by_category` — prefer passing a `category` to the one tool above.
+
 ### Utility Tools
 
 | Tool | Description |
@@ -140,8 +170,8 @@ claude mcp add oci-pricing -- node /path/to/oci-pricing-mcp/dist/index.js
 
 | Tool | Description |
 |------|-------------|
-| `fetch_realtime_pricing` | Fetch live pricing from Oracle's API (600+ products) |
-| `list_realtime_categories` | List all 109 service categories from the API |
+| `fetch_realtime_pricing` | Fetch live pricing directly from Oracle's API (full product catalog) |
+| `list_realtime_categories` | List all service categories from the live API |
 
 ## Usage Examples
 
@@ -206,10 +236,15 @@ This MCP server supports two data modes:
 
 Pricing data is synced from Oracle's public pricing API and bundled with the server. This provides fast, offline access to the complete OCI pricing catalog.
 
-- **Products**: 602 SKUs (full API dataset)
-- **Categories**: 109 service categories
-- **Detailed compute shapes**: 15 curated shapes with OCPU/memory breakdowns
-- **Timestamps**: `apiLastUpdated` and `bundledDataGenerated` for verification
+- **Products**: 640+ SKUs (full API dataset)
+- **Categories**: 110+ service categories
+- **Detailed compute shapes**: curated shapes with OCPU/memory breakdowns
+- **Timestamps**: `apiLastUpdated` and `bundledDataGenerated` for verification (see `get_pricing_info`)
+
+The raw-product snapshot and timestamps are **auto-refreshed monthly** from Oracle's live
+API via the [`refresh-data` GitHub Action](.github/workflows/refresh-data.yml) (curated
+category structures are preserved). You can also refresh locally with `npm run generate-data`,
+or get always-live pricing at call time with the `fetch_realtime_pricing` tool.
 
 ### Real-Time API
 
@@ -252,7 +287,7 @@ This MCP server provides pricing data, not account spend. For actual usage and s
 
 ### What's NOT included in the pricing data?
 
-The bundled data includes all 602 products from Oracle's public pricing API. However, some pricing is not available through this API:
+The bundled data includes the full product set from Oracle's public pricing API. However, some pricing is not available through this API:
 
 - **Committed use discounts** - Only Pay-As-You-Go pricing is shown; annual/3-year commits require Oracle sales
 - **Government/sovereign cloud** - Dedicated government regions have separate pricing

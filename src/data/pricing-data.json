@@ -3,10 +3,10 @@
     "source": "Oracle Cloud Infrastructure Pricing API",
     "sourceUrl": "https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/",
     "verifyUrl": "https://www.oracle.com/cloud/price-list/",
-    "apiLastUpdated": "2026-01-05T13:27:33.583Z",
-    "bundledDataGenerated": "2026-01-17T16:19:36Z",
-    "totalProducts": 602,
-    "totalCategories": 109,
+    "apiLastUpdated": "2026-06-02T13:15:14.854Z",
+    "bundledDataGenerated": "2026-06-03T22:33:42.837Z",
+    "totalProducts": 643,
+    "totalCategories": 111,
     "currency": "USD",
     "pricingModel": "PAY_AS_YOU_GO",
     "notes": "OCI pricing is consistent across all commercial regions. Prices shown are Pay-As-You-Go rates in USD."
@@ -2366,56 +2366,56 @@
       "partNumber": "B108077",
       "displayName": "OCI Generative AI - Large Cohere",
       "metricName": "10,000 Transactions",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.0156
     },
     {
       "partNumber": "B108078",
       "displayName": "OCI Generative AI - Small Cohere",
       "metricName": "10,000 Transactions",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.0009
     },
     {
       "partNumber": "B108079",
       "displayName": "OCI Generative AI - Embed Cohere",
       "metricName": "10,000 Transactions",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.001
     },
     {
       "partNumber": "B108080",
       "displayName": "OCI Generative AI - Large Meta",
       "metricName": "10,000 Transactions",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.0018
     },
     {
       "partNumber": "B108082",
       "displayName": "OCI Generative AI - Large Cohere - Dedicated",
       "metricName": "AI Unit Per Hour",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 24
     },
     {
       "partNumber": "B108083",
       "displayName": "OCI Generative AI - Small Cohere - Dedicated",
       "metricName": "AI Unit Per Hour",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 6.5
     },
     {
       "partNumber": "B108084",
       "displayName": "OCI Generative AI - Embed Cohere - Dedicated",
       "metricName": "AI Unit Per Hour",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 10.9
     },
     {
       "partNumber": "B108085",
       "displayName": "OCI Generative AI - Large Meta - Dedicated",
       "metricName": "AI Unit Per Hour",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 12
     },
     {
@@ -2452,27 +2452,6 @@
       "metricName": "Inferencing Unit Hour",
       "serviceCategory": "OCI Language",
       "priceUSD": 20
-    },
-    {
-      "partNumber": "B108764",
-      "displayName": "OCI - Vulnerability Detection and Patching - External Databases",
-      "metricName": "Host CPU Core Per Hour",
-      "serviceCategory": "Vulnerability Detection and Patching",
-      "priceUSD": 0.05
-    },
-    {
-      "partNumber": "B108765",
-      "displayName": "OCI - Vulnerability Detection and Patching - External Databases BYOL",
-      "metricName": "Host CPU Core Per Hour",
-      "serviceCategory": "Vulnerability Detection and Patching",
-      "priceUSD": 0.025
-    },
-    {
-      "partNumber": "B108773",
-      "displayName": "OCI - SQL Performance Watch External DB",
-      "metricName": "Host CPU Core Per Month",
-      "serviceCategory": "Oracle Database",
-      "priceUSD": 40
     },
     {
       "partNumber": "B108776",
@@ -2627,20 +2606,6 @@
       "metricName": "ECPU Per Hour",
       "serviceCategory": "Exadata Database Service ECPUs",
       "priceUSD": 0.0807
-    },
-    {
-      "partNumber": "B109358",
-      "displayName": "OCI - MySQL Database - Oracle Ops Insights for MySQL HeatWave",
-      "metricName": "OCPU Per Hour",
-      "serviceCategory": "Observability - Ops Insights",
-      "priceUSD": 0.015
-    },
-    {
-      "partNumber": "B109359",
-      "displayName": "OCI - MySQL Database - Oracle Ops Insights for MySQL HeatWave",
-      "metricName": "ECPU Per Hour",
-      "serviceCategory": "Observability - Ops Insights",
-      "priceUSD": 0.0075
     },
     {
       "partNumber": "B109375",
@@ -2884,7 +2849,7 @@
       "partNumber": "B110517",
       "displayName": "OCI Generative AI - Meta Llama 3.1 405B",
       "metricName": "10,000 Transactions",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.0267
     },
     {
@@ -2900,13 +2865,6 @@
       "metricName": "Processed Video Minute",
       "serviceCategory": "OCI Vision",
       "priceUSD": 0
-    },
-    {
-      "partNumber": "B110625",
-      "displayName": "OCI - MySQL Database - Database Management for MySQL HeatWave",
-      "metricName": "ECPU Per Hour",
-      "serviceCategory": "MySQL",
-      "priceUSD": 0.0075
     },
     {
       "partNumber": "B110627",
@@ -2947,7 +2905,7 @@
       "partNumber": "B110679",
       "displayName": "OCI Generative AI - Meta Llama 3.2 90B Vision",
       "metricName": "10,000 Transactions",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.005
     },
     {
@@ -3007,13 +2965,6 @@
       "priceUSD": 16
     },
     {
-      "partNumber": "B110986",
-      "displayName": "OCI Application Performance Monitoring Service - Stack Monitoring - Enterprise Edition for GPU Infrastructure",
-      "metricName": "GPU Monitoring Unit Per Hour",
-      "serviceCategory": "Observability - Stack Monitoring - GPU",
-      "priceUSD": 0.07
-    },
-    {
       "partNumber": "B110989",
       "displayName": "Oracle Globally Distributed Exadata Exascale Database ECPU",
       "metricName": "ECPU Per Hour",
@@ -3038,22 +2989,29 @@
       "partNumber": "B111015",
       "displayName": "OCI Generative AI - Cohere Rerank - Dedicated",
       "metricName": "Cluster Hour",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 10
     },
     {
       "partNumber": "B111035",
       "displayName": "OCI Generative AI - Meta Llama 4 Scout",
       "metricName": "10,000 Transactions",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.0018
     },
     {
       "partNumber": "B111036",
       "displayName": "OCI Generative AI - Meta Llama 4 Maverick",
       "metricName": "10,000 Transactions",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.0018
+    },
+    {
+      "partNumber": "B111045",
+      "displayName": "OCI - Roving Edge Station",
+      "metricName": "Resource Possession Per Day",
+      "serviceCategory": "Roving Edge Infrastructure",
+      "priceUSD": 2795
     },
     {
       "partNumber": "B111087",
@@ -3136,28 +3094,28 @@
       "partNumber": "B111438",
       "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 3 or Grok 4 - Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 3
     },
     {
       "partNumber": "B111439",
       "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 3 or Grok 4 - Output Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 15
     },
     {
       "partNumber": "B111440",
       "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 3 Mini - Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.3
     },
     {
       "partNumber": "B111441",
       "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 3 Mini - Output Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.5
     },
     {
@@ -3311,28 +3269,28 @@
       "partNumber": "B111552",
       "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 3 Fast - Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 5
     },
     {
       "partNumber": "B111553",
       "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 3 Fast - Output Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 25
     },
     {
       "partNumber": "B111554",
       "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 3 Mini Fast - Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.6
     },
     {
       "partNumber": "B111555",
       "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 3 Mini Fast - Output Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 4
     },
     {
@@ -3388,49 +3346,49 @@
       "partNumber": "B111799",
       "displayName": "OCI Generative AI - xAI - Grok 3 or Grok 4 - Cached Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.75
     },
     {
       "partNumber": "B111800",
       "displayName": "OCI Generative AI - xAI - Grok 3 Mini - Cached Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.075
     },
     {
       "partNumber": "B111801",
       "displayName": "OCI Generative AI - xAI - Grok 3 Fast - Cached Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 1.25
     },
     {
       "partNumber": "B111802",
       "displayName": "OCI Generative AI - xAI - Grok 3 Mini Fast - Cached Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.15
     },
     {
       "partNumber": "B111803",
       "displayName": "OCI Generative AI - xAI -Grok 4 Code -Grok-Code-Fast-1-Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.2
     },
     {
       "partNumber": "B111804",
       "displayName": "OCI Generative AI - xAI - Grok 4 Code Grok-Code-Fast-1- Cached Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.02
     },
     {
       "partNumber": "B111805",
       "displayName": "OCI Generative AI - xAI -Grok 4 Code - Grok-Code-Fast-1-Output Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 1.5
     },
     {
@@ -3493,120 +3451,141 @@
       "partNumber": "B111847",
       "displayName": "OCI Generative AI - Google - Gemini 2.5 Pro - Input Tokens - Text, Image, Audio, and Video less than 200K input tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 1.25
     },
     {
       "partNumber": "B111848",
       "displayName": "OCI Generative AI - Google -Gemini 2.5 Pro - Input Tokens - Text, Image, Audio, and Video greater than 200K input tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 2.5
     },
     {
       "partNumber": "B111849",
       "displayName": "OCI Generative AI - Google - Gemini 2.5 Pro - Output Tokens - Text Output less than 200K input tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 10
     },
     {
       "partNumber": "B111850",
       "displayName": "OCI Generative AI - Google - Gemini 2.5 Pro - Output Tokens - Text Output greater than 200K input tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 15
     },
     {
       "partNumber": "B111851",
       "displayName": "OCI Generative AI - Google - Gemini 2.5 Flash GA - Input Tokens - Text, Image, and Video",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.3
     },
     {
       "partNumber": "B111852",
       "displayName": "OCI Generative AI - Google - Gemini 2.5 Flash GA - Input Tokens - Audio",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 1
     },
     {
       "partNumber": "B111853",
       "displayName": "OCI Generative AI - Google - Gemini 2.5 Flash GA - Output Tokens - Text",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 2.5
     },
     {
       "partNumber": "B111854",
       "displayName": "OCI Generative AI - Google - Gemini 2.5 Flash Lite - Input Tokens - Text, Image, and Video",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.1
     },
     {
       "partNumber": "B111855",
       "displayName": "OCI Generative AI - Google - Gemini 2.5 Flash Lite - Input Tokens - Audio",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
-      "priceUSD": 0.5
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 0.3
     },
     {
       "partNumber": "B111856",
       "displayName": "OCI Generative AI - Google - Gemini 2.5 Flash Lite - Output Tokens - Text",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.4
     },
     {
       "partNumber": "B111900",
       "displayName": "OCI Generative AI - xAI - Grok 4 Fast - Input Tokens less than 128K tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.2
     },
     {
       "partNumber": "B111901",
       "displayName": "OCI Generative AI - xAI - Grok 4 Fast - Input Tokens greater than 128K tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.4
     },
     {
       "partNumber": "B111902",
       "displayName": "OCI Generative AI - xAI - Grok 4 Fast - Cached Input Tokens less than 128K tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.05
     },
     {
       "partNumber": "B111903",
       "displayName": "OCI Generative AI - xAI - Grok 4 Fast - Cached Input Tokens greater than 128K tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.05
     },
     {
       "partNumber": "B111904",
       "displayName": "OCI Generative AI - xAI - Grok 4 Fast - Output Tokens less than 128K tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.5
     },
     {
       "partNumber": "B111905",
       "displayName": "OCI Generative AI - xAI - Grok 4 Fast - Output Tokens greater than 128K tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 1
+    },
+    {
+      "partNumber": "B111910",
+      "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 4.2 - Input Tokens less than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 1.25
+    },
+    {
+      "partNumber": "B111911",
+      "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 4.2 - Cached Input Tokens less than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 0.2
     },
     {
       "partNumber": "B111959",
       "displayName": "OCI Generative AI - Model Import",
       "metricName": "AI Unit Per Hour",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 1
+    },
+    {
+      "partNumber": "B111973",
+      "displayName": "OCI Generative AI - Web Search",
+      "metricName": "1000 Requests",
+      "serviceCategory": "OCI Generative AI - Search and Retrieval",
+      "priceUSD": 10
     },
     {
       "partNumber": "B111994",
@@ -3626,36 +3605,106 @@
       "partNumber": "B112004",
       "displayName": "OCI Generative AI - OpenAI - gpt-oss-120b - Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.15
     },
     {
       "partNumber": "B112005",
       "displayName": "OCI Generative AI - OpenAI - gpt-oss-120b - Output Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.6
     },
     {
       "partNumber": "B112006",
       "displayName": "OCI Generative AI - OpenAI - gpt-oss-20b - Input Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.07
     },
     {
       "partNumber": "B112007",
       "displayName": "OCI Generative AI - OpenAI - gpt-oss-20b - Output Tokens",
       "metricName": "1,000,000 Tokens",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 0.3
     },
     {
       "partNumber": "B112008",
       "displayName": "OCI Generative AI - OpenAI - Dedicated",
       "metricName": "AI Unit Per Hour",
-      "serviceCategory": "OCI Generative AI",
+      "serviceCategory": "OCI Generative AI - Models",
       "priceUSD": 1
+    },
+    {
+      "partNumber": "B112076",
+      "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 4.2 - Output Tokens less than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 2.5
+    },
+    {
+      "partNumber": "B112077",
+      "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 4.2 - Input Tokens greater than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 2.5
+    },
+    {
+      "partNumber": "B112078",
+      "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 4.2 - Cached Input Tokens greater than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 0.4
+    },
+    {
+      "partNumber": "B112079",
+      "displayName": "Oracle Cloud Infrastructure Generative AI - xAI - Grok 4.2 - Output Tokens greater than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 5
+    },
+    {
+      "partNumber": "B112080",
+      "displayName": "OCI Generative AI - xAI - Grok 4.3 - Input Tokens less than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 1.25
+    },
+    {
+      "partNumber": "B112081",
+      "displayName": "OCI Generative AI - xAI - Grok 4.3 - Cached Input Tokens less than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 0.2
+    },
+    {
+      "partNumber": "B112082",
+      "displayName": "OCI Generative AI - xAI - Grok 4.3 - Output Tokens less than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 2.5
+    },
+    {
+      "partNumber": "B112083",
+      "displayName": "OCI  Generative AI - xAI - Grok 4.3 - Input Tokens greater than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 2.5
+    },
+    {
+      "partNumber": "B112084",
+      "displayName": "OCI Generative AI - xAI - Grok 4.3 - Cached Input Tokens greater than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 0.4
+    },
+    {
+      "partNumber": "B112085",
+      "displayName": "OCI Generative AI - xAI - Grok 4.3 - Output Tokens greater than 200K Tokens",
+      "metricName": "1,000,000 Tokens",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 5
     },
     {
       "partNumber": "B112107",
@@ -3679,6 +3728,20 @@
       "priceUSD": 18
     },
     {
+      "partNumber": "B112141",
+      "displayName": "OCI - Compute - Standard - X12 Ax - OCPU",
+      "metricName": "OCPU Per Hour",
+      "serviceCategory": "Compute - Virtual Machine",
+      "priceUSD": 0.0119
+    },
+    {
+      "partNumber": "B112142",
+      "displayName": "OCI - Compute - Standard - X12 Ax - Memory",
+      "metricName": "Gigabyte Per Hour",
+      "serviceCategory": "Compute - Virtual Machine",
+      "priceUSD": 0.0114
+    },
+    {
       "partNumber": "B112145",
       "displayName": "OCI - Compute - Standard - A4 - OCPU",
       "metricName": "OCPU Per Hour",
@@ -3691,6 +3754,286 @@
       "metricName": "Gigabyte Per Hour",
       "serviceCategory": "Compute - Virtual Machine",
       "priceUSD": 0.0027
+    },
+    {
+      "partNumber": "B112199",
+      "displayName": "Identity and Access Management - External Active User",
+      "metricName": "Active User Per Month",
+      "serviceCategory": "OCI IAM",
+      "priceUSD": 0.016
+    },
+    {
+      "partNumber": "B112237",
+      "displayName": "Oracle Cloud Infrastructure - Compute - GPU - B300",
+      "metricName": "GPU Per Hour",
+      "serviceCategory": "Compute - GPU",
+      "priceUSD": 15
+    },
+    {
+      "partNumber": "B112414",
+      "displayName": "OCI Generative AI - File Search Storage",
+      "metricName": "Gigabyte Storage Per Hour",
+      "serviceCategory": "OCI Generative AI - Search and Retrieval",
+      "priceUSD": 0.0042
+    },
+    {
+      "partNumber": "B112423",
+      "displayName": "OCI Generative AI - Rerank 4 Pro",
+      "metricName": "1000 Search Units",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 2.5
+    },
+    {
+      "partNumber": "B112424",
+      "displayName": "OCI Generative AI - Rerank 4 Fast",
+      "metricName": "1000 Search Units",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 2
+    },
+    {
+      "partNumber": "B112425",
+      "displayName": "OCI Generative AI - Cohere - Dedicated",
+      "metricName": "AI Unit Per Hour",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 1
+    },
+    {
+      "partNumber": "B112517",
+      "displayName": "OCI Generative AI - xAI - Grok Imagine Image",
+      "metricName": "Image",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 0.02
+    },
+    {
+      "partNumber": "B112518",
+      "displayName": "OCI Generative AI - xAI - Grok Voice Agent API",
+      "metricName": "Connection Time Minute",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 0.05
+    },
+    {
+      "partNumber": "B112530",
+      "displayName": "OCI - Compute - Standard - E6 Ax - OCPU",
+      "metricName": "OCPU Per Hour",
+      "serviceCategory": "Compute - Virtual Machine",
+      "priceUSD": 0.0138
+    },
+    {
+      "partNumber": "B112531",
+      "displayName": "OCI - Compute - Standard - E6 Ax - Memory",
+      "metricName": "Gigabytes Per Hour",
+      "serviceCategory": "Compute - Virtual Machine",
+      "priceUSD": 0.0108
+    },
+    {
+      "partNumber": "B112532",
+      "displayName": "OCI - Compute - Standard - A4 Ax - OCPU",
+      "metricName": "OCPU Per Hour",
+      "serviceCategory": "Compute - Virtual Machine",
+      "priceUSD": 0.019
+    },
+    {
+      "partNumber": "B112533",
+      "displayName": "OCI - Compute - Standard - A4 Ax - Memory",
+      "metricName": "Gigabytes Per Hour",
+      "serviceCategory": "Compute - Virtual Machine",
+      "priceUSD": 0.0084
+    },
+    {
+      "partNumber": "B112540",
+      "displayName": "OCI - Cloudflare Business Services",
+      "metricName": "Instance Per Month",
+      "serviceCategory": "Business Services",
+      "priceUSD": 300
+    },
+    {
+      "partNumber": "B112541",
+      "displayName": "OCI - Cloudflare Enterprise Entry Services",
+      "metricName": "Instance Per Month",
+      "serviceCategory": "Enterprise Entry Services",
+      "priceUSD": 2675
+    },
+    {
+      "partNumber": "B112542",
+      "displayName": "OCI - Cloudflare Enterprise Essential Services",
+      "metricName": "Instance Per Month",
+      "serviceCategory": "Enterprise Essential Services",
+      "priceUSD": 8325
+    },
+    {
+      "partNumber": "B112543",
+      "displayName": "OCI - Cloudflare Enterprise Advanced Services",
+      "metricName": "Instance Per Month",
+      "serviceCategory": "Enterprise Advanced Services",
+      "priceUSD": 28000
+    },
+    {
+      "partNumber": "B112544",
+      "displayName": "OCI - Cloudflare Domain",
+      "metricName": "Domain Per Month",
+      "serviceCategory": "OCI Cloudflare Bundle Usage Overage",
+      "priceUSD": 300
+    },
+    {
+      "partNumber": "B112545",
+      "displayName": "OCI - Cloudflare Certificate",
+      "metricName": "Certificate Per Month",
+      "serviceCategory": "OCI Cloudflare Bundle Usage Overage",
+      "priceUSD": 10
+    },
+    {
+      "partNumber": "B112546",
+      "displayName": "OCI - Cloudflare Workers",
+      "metricName": "1,000,000 Requests Per Month",
+      "serviceCategory": "OCI Cloudflare Bundle Usage Overage",
+      "priceUSD": 0.32
+    },
+    {
+      "partNumber": "B112547",
+      "displayName": "OCI - Cloudflare Workers CPU Time",
+      "metricName": "1,000,000 Milliseconds Per Month",
+      "serviceCategory": "OCI Cloudflare Bundle Usage Overage",
+      "priceUSD": 0.0222
+    },
+    {
+      "partNumber": "B112548",
+      "displayName": "OCI - Cloudflare Business Services Traffic",
+      "metricName": "Terabyte Per Month",
+      "serviceCategory": "Business Services",
+      "priceUSD": 250
+    },
+    {
+      "partNumber": "B112549",
+      "displayName": "OCI - Cloudflare Business Services Request",
+      "metricName": "1,000,000 Requests Per Month",
+      "serviceCategory": "Business Services",
+      "priceUSD": 2
+    },
+    {
+      "partNumber": "B112550",
+      "displayName": "OCI - Cloudflare Enterprise Entry Services Traffic",
+      "metricName": "Terabyte Per Month",
+      "serviceCategory": "Enterprise Entry Services",
+      "priceUSD": 542
+    },
+    {
+      "partNumber": "B112551",
+      "displayName": "OCI - Cloudflare Enterprise Entry Services Request",
+      "metricName": "1,000,000 Requests Per Month",
+      "serviceCategory": "Enterprise Entry Services",
+      "priceUSD": 2.5
+    },
+    {
+      "partNumber": "B112552",
+      "displayName": "OCI - Cloudflare Enterprise Essentials Services Traffic",
+      "metricName": "Terabyte Per Month",
+      "serviceCategory": "Enterprise Essential Services",
+      "priceUSD": 1038
+    },
+    {
+      "partNumber": "B112553",
+      "displayName": "OCI - Cloudflare Enterprise Essentials Services Request",
+      "metricName": "1,000,000 Requests Per Month",
+      "serviceCategory": "Enterprise Essential Services",
+      "priceUSD": 11.37
+    },
+    {
+      "partNumber": "B112554",
+      "displayName": "OCI - Cloudflare Enterprise Advanced Services Traffic",
+      "metricName": "Terabyte Per Month",
+      "serviceCategory": "Enterprise Advanced Services",
+      "priceUSD": 1825
+    },
+    {
+      "partNumber": "B112555",
+      "displayName": "OCI - Cloudflare Enterprise Advanced Services Request",
+      "metricName": "1,000,000 Requests Per Month",
+      "serviceCategory": "Enterprise Advanced Services",
+      "priceUSD": 18
+    },
+    {
+      "partNumber": "B112556",
+      "displayName": "OCI - Compute - Dense IO - E6 Ax - OCPU",
+      "metricName": "OCPU Per Hour",
+      "serviceCategory": "Compute - Virtual Machine",
+      "priceUSD": 0.0108
+    },
+    {
+      "partNumber": "B112557",
+      "displayName": "OCI - Compute - Dense IO - E6 Ax - Memory",
+      "metricName": "Gigabytes Per Hour",
+      "serviceCategory": "Compute - Virtual Machine",
+      "priceUSD": 0.009
+    },
+    {
+      "partNumber": "B112558",
+      "displayName": "OCI - Compute - Dense IO - E6 Ax - NVMe",
+      "metricName": "NVMe Terabyte Per Hour",
+      "serviceCategory": "Compute - Virtual Machine",
+      "priceUSD": 0.1433
+    },
+    {
+      "partNumber": "B112575",
+      "displayName": "OCI Generative AI - Memory Ingestion",
+      "metricName": "1000 Events",
+      "serviceCategory": "OCI Generative AI - Search and Retrieval",
+      "priceUSD": 0.2
+    },
+    {
+      "partNumber": "B112577",
+      "displayName": "OCI Generative AI - Vector Store Storage",
+      "metricName": "Gigabyte Storage Per Hour",
+      "serviceCategory": "OCI Generative AI - Search and Retrieval",
+      "priceUSD": 0.0042
+    },
+    {
+      "partNumber": "B112578",
+      "displayName": "OCI Generative AI - Vector Store Retrieval",
+      "metricName": "1000 Requests",
+      "serviceCategory": "OCI Generative AI - Search and Retrieval",
+      "priceUSD": 0.2
+    },
+    {
+      "partNumber": "B112579",
+      "displayName": "OCI Generative AI - Memory Retention",
+      "metricName": "Gigabyte Storage Per Hour",
+      "serviceCategory": "OCI Generative AI - Search and Retrieval",
+      "priceUSD": 0.0042
+    },
+    {
+      "partNumber": "B112608",
+      "displayName": "OCI Generative AI - xAI - Grok Text to Speech",
+      "metricName": "1,000,000 Characters",
+      "serviceCategory": "OCI Generative AI - Models",
+      "priceUSD": 4.2
+    },
+    {
+      "partNumber": "B112609",
+      "displayName": "OCI Generative AI - xAI X Search",
+      "metricName": "1000 Requests",
+      "serviceCategory": "Generative AI - xAI - Agent Tools",
+      "priceUSD": 5
+    },
+    {
+      "partNumber": "B112610",
+      "displayName": "OCI Generative AI - xAI Web Search",
+      "metricName": "1000 Requests",
+      "serviceCategory": "Generative AI - xAI - Agent Tools",
+      "priceUSD": 5
+    },
+    {
+      "partNumber": "B112611",
+      "displayName": "OCI Generative AI - xAI Code Execution",
+      "metricName": "1000 Requests",
+      "serviceCategory": "Generative AI - xAI - Agent Tools",
+      "priceUSD": 5
+    },
+    {
+      "partNumber": "B112613",
+      "displayName": "OCI - Compute - GPU - RTX PRO 6000",
+      "metricName": "GPU Per Hour",
+      "serviceCategory": "Compute - GPU",
+      "priceUSD": 4.5
     },
     {
       "partNumber": "B88290",
@@ -4020,13 +4363,6 @@
       "metricName": "Requests per Hour",
       "serviceCategory": "Oracle Digital Assistant",
       "priceUSD": 0.0232
-    },
-    {
-      "partNumber": "B90304",
-      "displayName": "Oracle Mobile Hub Cloud Service",
-      "metricName": "Requests per Hour",
-      "serviceCategory": "Mobile",
-      "priceUSD": 0.0028
     },
     {
       "partNumber": "B90323",
@@ -4652,27 +4988,6 @@
       "priceUSD": 0.4646
     },
     {
-      "partNumber": "B92940",
-      "displayName": "Application Performance Monitoring Service - Tracing Data - Free",
-      "metricName": "1,000 Events Per Hour",
-      "serviceCategory": "Observability - APM",
-      "priceUSD": 0
-    },
-    {
-      "partNumber": "B92941",
-      "displayName": "Application Performance Monitoring Service - Tracing Data",
-      "metricName": "100,000 Events Per Hour",
-      "serviceCategory": "Observability - APM",
-      "priceUSD": 0.65
-    },
-    {
-      "partNumber": "B92942",
-      "displayName": "Application Performance Monitoring Service -  Synthetic Usage",
-      "metricName": "10 Monitor Runs Per Hour",
-      "serviceCategory": "Observability - APM",
-      "priceUSD": 0.02
-    },
-    {
       "partNumber": "B92992",
       "displayName": "OCI GoldenGate",
       "metricName": "OCPU Per Hour",
@@ -5009,13 +5324,6 @@
       "priceUSD": 0.015
     },
     {
-      "partNumber": "B93648",
-      "displayName": "Roving Edge Station - Resource Possession per Month",
-      "metricName": "Each",
-      "serviceCategory": "Roving Edge Infrastructure",
-      "priceUSD": 85000
-    },
-    {
       "partNumber": "B93705",
       "displayName": "OCI Ops Insights for Warehouse - Extract",
       "metricName": "Gigabyte Per Month",
@@ -5182,13 +5490,6 @@
       "metricName": "Virtualized GB Per Month",
       "serviceCategory": "Oracle Database Autonomous Recovery Service",
       "priceUSD": 0.04
-    },
-    {
-      "partNumber": "B95264",
-      "displayName": "OCI - Stack Monitoring - Standard Edition",
-      "metricName": "10 Monitored Resources Per Hour",
-      "serviceCategory": "Observability - Stack Monitoring",
-      "priceUSD": 0.075
     },
     {
       "partNumber": "B95279",
@@ -6199,13 +6500,6 @@
       "priceUSD": 0.011
     },
     {
-      "partNumber": "B96629",
-      "displayName": "OCI - Application Performance Monitoring Service - Synthetic Usage - Free",
-      "metricName": "10 Monitor Runs Per Hour",
-      "serviceCategory": "Observability - APM",
-      "priceUSD": 0
-    },
-    {
       "partNumber": "B97102",
       "displayName": "Oracle Cloud VMware Solution - Base - BM.Standard2.12 - Hourly Commit",
       "metricName": "Node Per Hour",
@@ -6477,13 +6771,6 @@
       "metricName": "Gigabyte Storage Capacity Per Month",
       "serviceCategory": "Database with PostgreSQL",
       "priceUSD": 0.072
-    },
-    {
-      "partNumber": "B99259",
-      "displayName": "OCI - Stack Monitoring - Enterprise Edition",
-      "metricName": "10 Monitored Resources Per Hour",
-      "serviceCategory": "Observability - Stack Monitoring",
-      "priceUSD": 0.38
     },
     {
       "partNumber": "B99591",
