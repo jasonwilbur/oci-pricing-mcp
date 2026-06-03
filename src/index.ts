@@ -19,6 +19,7 @@
  * limitations under the License.
  */
 
+import { createRequire } from 'module';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
@@ -27,6 +28,12 @@ import {
   ErrorCode,
   McpError,
 } from '@modelcontextprotocol/sdk/types.js';
+
+// Single source of truth for the version: read it from package.json at runtime
+// (dist/index.js -> ../package.json) so the MCP handshake, server.json, and
+// get_pricing_info can never drift from the published package version.
+const require = createRequire(import.meta.url);
+const { version: VERSION } = require('../package.json') as { version: string };
 
 // Import tools
 import { getPricing, listServices, compareRegions, listRegions } from './tools/core.js';
@@ -52,7 +59,9 @@ import {
   listCacheServices,
   listDisasterRecoveryServices,
   listAdditionalServices,
-  getServicesSummary
+  getServicesSummary,
+  listServicesByCategory,
+  SERVICE_CATEGORIES
 } from './tools/services.js';
 import { getLastUpdated, getFreeTier, fetchRealTimePricing, getRealTimeCategories } from './data/fetcher.js';
 
@@ -60,7 +69,7 @@ import { getLastUpdated, getFreeTier, fetchRealTimePricing, getRealTimeCategorie
 const server = new Server(
   {
     name: 'oci-pricing-mcp',
-    version: '1.0.0',
+    version: VERSION,
   },
   {
     capabilities: {
@@ -554,10 +563,36 @@ const TOOLS = [
       required: ['databaseType', 'computeUnits', 'storageGB'],
     },
   },
+  // Consolidated service-category listing (preferred over the individual
+  // list_*_services tools below).
+  {
+    name: 'list_services_by_category',
+    description:
+      'List OCI services in a given category (AI/ML, observability, integration, security, analytics, developer, media, VMware, edge, governance, Exadata, cache, disaster-recovery, additional). Preferred single entry point that replaces the individual list_*_services tools.',
+    inputSchema: {
+      type: 'object' as const,
+      properties: {
+        category: {
+          type: 'string',
+          enum: SERVICE_CATEGORIES,
+          description: 'Service category to list',
+        },
+        type: {
+          type: 'string',
+          description: 'Optional service-type filter within the category (e.g. "vision", "logging", "functions")',
+        },
+        model: {
+          type: 'string',
+          description: 'Optional model filter, only applies to category "aiml" (e.g. "cohere", "llama", "grok")',
+        },
+      },
+      required: ['category'],
+    },
+  },
   // AI/ML Services
   {
     name: 'list_aiml_services',
-    description: 'List OCI AI/ML services including Generative AI (Cohere, Meta Llama, xAI Grok), Vision, Speech, Language, and Document Understanding.',
+    description: '[DEPRECATED: use list_services_by_category with category="aiml"] List OCI AI/ML services including Generative AI (Cohere, Meta Llama, xAI Grok), Vision, Speech, Language, and Document Understanding.',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -576,7 +611,7 @@ const TOOLS = [
   // Observability Services
   {
     name: 'list_observability_services',
-    description: 'List OCI Observability services including APM, Logging, Log Analytics, Monitoring, and Stack Monitoring.',
+    description: '[DEPRECATED: use list_services_by_category with category="observability"] List OCI Observability services including APM, Logging, Log Analytics, Monitoring, and Stack Monitoring.',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -591,7 +626,7 @@ const TOOLS = [
   // Integration Services
   {
     name: 'list_integration_services',
-    description: 'List OCI Integration services including Integration Cloud (OIC), GoldenGate, Data Integration, Streaming, and Queue.',
+    description: '[DEPRECATED: use list_services_by_category with category="integration"] List OCI Integration services including Integration Cloud (OIC), GoldenGate, Data Integration, Streaming, and Queue.',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -606,7 +641,7 @@ const TOOLS = [
   // Security Services
   {
     name: 'list_security_services',
-    description: 'List OCI Security services including Data Safe, Cloud Guard, Vault, WAF, and Network Firewall.',
+    description: '[DEPRECATED: use list_services_by_category with category="security"] List OCI Security services including Data Safe, Cloud Guard, Vault, WAF, and Network Firewall.',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -621,7 +656,7 @@ const TOOLS = [
   // Analytics Services
   {
     name: 'list_analytics_services',
-    description: 'List OCI Analytics services including Analytics Cloud, Big Data Service, Data Flow, and Data Science.',
+    description: '[DEPRECATED: use list_services_by_category with category="analytics"] List OCI Analytics services including Analytics Cloud, Big Data Service, Data Flow, and Data Science.',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -636,7 +671,7 @@ const TOOLS = [
   // Developer Services
   {
     name: 'list_developer_services',
-    description: 'List OCI Developer services including Functions, Container Instances, API Gateway, APEX, and DevOps.',
+    description: '[DEPRECATED: use list_services_by_category with category="developer"] List OCI Developer services including Functions, Container Instances, API Gateway, APEX, and DevOps.',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -651,7 +686,7 @@ const TOOLS = [
   // Media Services
   {
     name: 'list_media_services',
-    description: 'List OCI Media Services including Media Flow (transcoding) and Media Streams (live/VOD streaming).',
+    description: '[DEPRECATED: use list_services_by_category with category="media"] List OCI Media Services including Media Flow (transcoding) and Media Streams (live/VOD streaming).',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -666,7 +701,7 @@ const TOOLS = [
   // VMware Services
   {
     name: 'list_vmware_services',
-    description: 'List Oracle Cloud VMware Solution (OCVS) pricing for running VMware workloads on OCI.',
+    description: '[DEPRECATED: use list_services_by_category with category="vmware"] List Oracle Cloud VMware Solution (OCVS) pricing for running VMware workloads on OCI.',
     inputSchema: {
       type: 'object' as const,
       properties: {},
@@ -675,7 +710,7 @@ const TOOLS = [
   // Edge Services
   {
     name: 'list_edge_services',
-    description: 'List OCI Edge services including DNS, Email Delivery, and Health Checks.',
+    description: '[DEPRECATED: use list_services_by_category with category="edge"] List OCI Edge services including DNS, Email Delivery, and Health Checks.',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -690,7 +725,7 @@ const TOOLS = [
   // Governance Services
   {
     name: 'list_governance_services',
-    description: 'List OCI Governance services including Access Governance, Fleet Management, and License Manager.',
+    description: '[DEPRECATED: use list_services_by_category with category="governance"] List OCI Governance services including Access Governance, Fleet Management, and License Manager.',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -705,7 +740,7 @@ const TOOLS = [
   // Exadata
   {
     name: 'list_exadata_services',
-    description: 'List Oracle Exadata Cloud pricing including Exascale, dedicated infrastructure, ECPUs, OCPUs, and storage.',
+    description: '[DEPRECATED: use list_services_by_category with category="exadata"] List Oracle Exadata Cloud pricing including Exascale, dedicated infrastructure, ECPUs, OCPUs, and storage.',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -720,7 +755,7 @@ const TOOLS = [
   // Cache (Redis)
   {
     name: 'list_cache_services',
-    description: 'List OCI Cache with Redis pricing. Shows managed Redis cache options with low and high memory tiers.',
+    description: '[DEPRECATED: use list_services_by_category with category="cache"] List OCI Cache with Redis pricing. Shows managed Redis cache options with low and high memory tiers.',
     inputSchema: {
       type: 'object' as const,
       properties: {},
@@ -729,7 +764,7 @@ const TOOLS = [
   // Disaster Recovery
   {
     name: 'list_disaster_recovery_services',
-    description: 'List OCI Full Stack Disaster Recovery pricing for automating DR across application stacks.',
+    description: '[DEPRECATED: use list_services_by_category with category="disaster-recovery"] List OCI Full Stack Disaster Recovery pricing for automating DR across application stacks.',
     inputSchema: {
       type: 'object' as const,
       properties: {},
@@ -738,7 +773,7 @@ const TOOLS = [
   // Additional Services
   {
     name: 'list_additional_services',
-    description: 'List additional OCI services including OpenSearch, Secure Desktops, Blockchain, TimesTen, Batch, Recovery Service, ZFS Storage, Lustre, and Digital Assistant.',
+    description: '[DEPRECATED: use list_services_by_category with category="additional"] List additional OCI services including OpenSearch, Secure Desktops, Blockchain, TimesTen, Batch, Recovery Service, ZFS Storage, Lustre, and Digital Assistant.',
     inputSchema: {
       type: 'object' as const,
       properties: {
@@ -761,10 +796,36 @@ const TOOLS = [
   },
 ];
 
-// Handle list tools request
+// Tools that reach out to Oracle's live pricing API. Everything else reads
+// bundled data only. Used to set MCP `openWorldHint`.
+const OPEN_WORLD_TOOLS = new Set(['fetch_realtime_pricing', 'list_realtime_categories']);
+
+// Handle list tools request. Every tool here is read-only (none mutate state),
+// so we attach `readOnlyHint` to all and `openWorldHint` only to the two that
+// hit Oracle's live pricing API.
 server.setRequestHandler(ListToolsRequestSchema, async () => {
-  return { tools: TOOLS };
+  return {
+    tools: TOOLS.map((tool) => ({
+      ...tool,
+      annotations: {
+        title: tool.name,
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: OPEN_WORLD_TOOLS.has(tool.name),
+      },
+    })),
+  };
 });
+
+// MCP `structuredContent` must be a JSON object. Wrap arrays/primitives so every
+// tool can return a machine-parseable result alongside the human-readable text.
+function toStructuredContent(result: unknown): Record<string, unknown> {
+  if (result !== null && typeof result === 'object' && !Array.isArray(result)) {
+    return result as Record<string, unknown>;
+  }
+  return { result };
+}
 
 // Handle tool calls
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
@@ -866,7 +927,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           source: 'https://www.oracle.com/cloud/price-list/',
           realtimeApi: 'https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/',
           note: 'OCI maintains consistent pricing across all commercial regions globally.',
-          version: '1.0.0',
+          version: VERSION,
           dataMode: 'bundled (use fetch_realtime_pricing for live API data)',
         };
         break;
@@ -900,7 +961,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         result = compareMulticloudVsOCI(typedArgs);
         break;
 
-      // New service category tools
+      // Consolidated service-category listing
+      case 'list_services_by_category':
+        result = listServicesByCategory(typedArgs);
+        break;
+
+      // Individual service category tools (deprecated in favor of
+      // list_services_by_category, kept for backward compatibility)
       case 'list_aiml_services':
         result = listAIMLServices(typedArgs);
         break;
@@ -958,6 +1025,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           text: JSON.stringify(result, null, 2),
         },
       ],
+      structuredContent: toStructuredContent(result),
     };
   } catch (error) {
     if (error instanceof McpError) {

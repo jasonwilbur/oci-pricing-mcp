@@ -526,3 +526,108 @@ export function getServicesSummary() {
     ]
   };
 }
+
+// ============================================
+// Consolidated category dispatcher
+// ============================================
+
+export type ServiceCategory =
+  | 'aiml'
+  | 'observability'
+  | 'integration'
+  | 'security'
+  | 'analytics'
+  | 'developer'
+  | 'media'
+  | 'vmware'
+  | 'edge'
+  | 'governance'
+  | 'exadata'
+  | 'cache'
+  | 'disaster-recovery'
+  | 'additional';
+
+export const SERVICE_CATEGORIES: ServiceCategory[] = [
+  'aiml',
+  'observability',
+  'integration',
+  'security',
+  'analytics',
+  'developer',
+  'media',
+  'vmware',
+  'edge',
+  'governance',
+  'exadata',
+  'cache',
+  'disaster-recovery',
+  'additional',
+];
+
+export interface ListServicesByCategoryParams {
+  category: ServiceCategory;
+  type?: string;
+  model?: string;
+}
+
+/**
+ * Single entry point for the 14 OCI service-category listings. Replaces the 18
+ * near-identical list_*_services tools so the model only has to pick one tool
+ * plus a `category`. Dispatches to the existing per-category functions, which
+ * remain the source of truth for shape and filtering.
+ */
+export function listServicesByCategory(params: ListServicesByCategoryParams) {
+  const { category, type, model } = params;
+
+  let data: Record<string, unknown>;
+  switch (category) {
+    case 'aiml':
+      data = listAIMLServices({ type, model });
+      break;
+    case 'observability':
+      data = listObservabilityServices({ type });
+      break;
+    case 'integration':
+      data = listIntegrationServices({ type });
+      break;
+    case 'security':
+      data = listSecurityServices({ type });
+      break;
+    case 'analytics':
+      data = listAnalyticsServices({ type });
+      break;
+    case 'developer':
+      data = listDeveloperServices({ type });
+      break;
+    case 'media':
+      data = listMediaServices({ type });
+      break;
+    case 'vmware':
+      data = listVMwareServices();
+      break;
+    case 'edge':
+      data = listEdgeServices({ type });
+      break;
+    case 'governance':
+      data = listGovernanceServices({ type });
+      break;
+    case 'exadata':
+      data = listExadataServices({ type });
+      break;
+    case 'cache':
+      data = listCacheServices();
+      break;
+    case 'disaster-recovery':
+      data = listDisasterRecoveryServices();
+      break;
+    case 'additional':
+      data = listAdditionalServices({ type });
+      break;
+    default:
+      throw new Error(
+        `Unknown service category "${category}". Valid categories: ${SERVICE_CATEGORIES.join(', ')}.`
+      );
+  }
+
+  return { category, ...data };
+}

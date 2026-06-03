@@ -298,7 +298,9 @@ export function compareDataEgress(monthlyGB: number): {
   const ociBillableGB = Math.max(0, monthlyGB - ociFreeGB);
   const ociCost = ociBillableGB * egressPrice.pricePerUnit;
 
-  // Rough comparisons (AWS/Azure typically ~$0.09/GB after 10 GB free)
+  // Rough comparisons. NOTE: competitor rates below are hardcoded approximations
+  // (accurate as of 2026-06), not sourced from a live feed. Only the OCI figure
+  // comes from OCI pricing data.
   const awsRate = 0.09;
   const awsFreeGB = 100; // AWS has ~100 GB free tier
   const awsCost = (monthlyGB - awsFreeGB) * awsRate;
@@ -314,6 +316,7 @@ export function compareDataEgress(monthlyGB: number): {
       `OCI: 10 TB free, then $${egressPrice.pricePerUnit}/GB`,
       'AWS/Azure: ~100 GB free, then ~$0.09/GB (varies by region/tier)',
       'GCP: Similar to AWS at scale',
+      'Competitor (AWS/Azure/GCP) rates are approximate, hardcoded as of 2026-06 — verify against provider pricing pages.',
       'OCI consistently offers the lowest egress pricing',
     ],
   };
